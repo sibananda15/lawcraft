@@ -1,9 +1,10 @@
 export const lawyerProfile = {
-  name: "Advocate Name",
-  designation: "Advocate",
+  name: "Mr. Rajendra Panigrahi",
+  designation: "Senior Advocate",
   location: "New Delhi, India",
+  experienceLine: "Over 20 Years of Distinguished Practice in High-Stakes Litigation",
   bio:
-    "A distinguished legal practitioner with over two decades of experience in high-stakes litigation. Specializing in criminal defense, constitutional law, and complex property disputes, known for strategic counsel and unwavering advocacy.",
+    "A distinguished legal practitioner known for his commanding courtroom presence and strategic intellect. Specialized in criminal defense, constitutional law, and complex property disputes, Mr. Panigrahi provides authoritative counsel to corporations and individuals in their most critical legal challenges.",
   focusAreas: [
     "Criminal Defense",
     "Constitutional Law",
@@ -13,6 +14,6 @@ export const lawyerProfile = {
   courts: [
     "Supreme Court of India",
     "Delhi High Court",
-    "District Courts, NCR",
-  ],
+    "District Courts – NCR"
+  ]
 };

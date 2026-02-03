@@ -4,53 +4,63 @@ interface LawyerProfile {
     name: string;
     designation: string;
     location: string;
+    experienceLine?: string;
     bio: string;
     focusAreas: string[];
     courts: string[];
 }
 
 interface LawyerProfileSectionProps {
-    heading: string;
+    heading?: string; // Optional, can be ignored if we just want the profile
     profile: LawyerProfile;
 }
 
-const LawyerProfileSection = ({ heading, profile }: LawyerProfileSectionProps) => {
+const LawyerProfileSection = ({ profile }: LawyerProfileSectionProps) => {
     return (
-        <section className="section bg-neutral-50 border-y border-neutral-200">
+        <section className="section bg-white border-y border-gray-100 py-24">
             <Container>
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="grid md:grid-cols-2 gap-16 items-start">
 
                     {/* Left Column: Content */}
-                    <div className="order-2 md:order-1 space-y-8">
-                        <div>
-                            <h2 className="text-3xl md:text-4xl font-serif text-gray-900 leading-tight">
+                    <div className="order-2 md:order-1 flex flex-col justify-center h-full">
+                        <div className="mb-8">
+                            <h2 className="text-4xl md:text-5xl font-serif text-gray-900 leading-tight mb-3">
                                 {profile.name}
                             </h2>
-                            <p className="text-lg text-gray-500 uppercase tracking-widest mt-2 font-medium">
+                            <p className="text-sm font-medium text-gray-500 tracking-[0.2em] uppercase">
                                 {profile.designation}, {profile.location}
                             </p>
                         </div>
 
-                        <div className="w-16 h-px bg-gray-400"></div>
+                        {/* Authority Line */}
+                        {profile.experienceLine && (
+                            <div className="mb-8 pl-6 border-l-2 border-gray-900">
+                                <p className="text-xl font-serif font-medium text-gray-900 italic">
+                                    "{profile.experienceLine}"
+                                </p>
+                            </div>
+                        )}
 
-                        <p className="text-xl text-gray-800 leading-relaxed font-light font-serif">
+                        <div className="w-12 h-px bg-gray-300 mb-8"></div>
+
+                        <p className="text-lg text-gray-600 leading-relaxed font-light mb-12 max-w-lg">
                             {profile.bio}
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 pt-4 border-t border-gray-200">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 border-t border-gray-100 pt-8">
                             <div>
-                                <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Focus Areas</h4>
-                                <ul className="space-y-1">
+                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Focus Areas</h4>
+                                <ul className="space-y-2">
                                     {profile.focusAreas?.map((area, index) => (
-                                        <li key={index} className="text-gray-700 font-medium">{area}</li>
+                                        <li key={index} className="text-gray-700 text-sm font-medium border-b border-gray-50 pb-1 last:border-0">{area}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Admitted to Practice</h4>
-                                <ul className="space-y-1">
+                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Admitted to Practice</h4>
+                                <ul className="space-y-2">
                                     {profile.courts.map((court, index) => (
-                                        <li key={index} className="text-gray-700 font-medium">{court}</li>
+                                        <li key={index} className="text-gray-700 text-sm font-medium border-b border-gray-50 pb-1 last:border-0">{court}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -58,12 +68,12 @@ const LawyerProfileSection = ({ heading, profile }: LawyerProfileSectionProps) =
                     </div>
 
                     {/* Right Column: Portrait */}
-                    <div className="order-1 md:order-2 flex justify-end">
-                        <div className="relative w-full max-w-sm aspect-[4/5] bg-gray-200 overflow-hidden shadow-sm filter grayscale hover:grayscale-0 transition-all duration-700 ease-in-out">
+                    <div className="order-1 md:order-2 flex justify-end items-center">
+                        <div className="relative w-full max-w-md aspect-[3/4] bg-stone-100 overflow-hidden shadow-sm">
                             <img
                                 src="/images/advocate-portrait.png"
                                 alt={profile.name}
-                                className="w-full h-full object-cover object-top"
+                                className="w-full h-full object-cover grayscale contrast-110"
                             />
                         </div>
                     </div>
