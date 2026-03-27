@@ -28,17 +28,11 @@ export default function HomePage() {
 
       <main>
         <HeroSection
-          title="Advocate for Criminal, Family & Property Law Matters"
-          subtitle="Focused legal practice across criminal defense, family disputes, and property litigation."
-          primaryAction={{ label: "Call Now", href: "tel:+919999999999" }}
+          primaryAction={{ label: "Call Now", href: "tel:+91 9810053761" }}
           secondaryAction={{ label: "WhatsApp", href: "https://wa.me/919999999999" }}
-          imageSrc="/images/lady-justice-dark.png"
         />
         <PracticeAreasSection />
-        <LawyerProfileSection
-          heading="About the Advocate"
-          profile={lawyerProfile}
-        />
+
         <WhyChoose />
         <ContactSection
           heading="Contact Advocate"

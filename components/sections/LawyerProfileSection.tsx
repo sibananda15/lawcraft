@@ -17,69 +17,89 @@ interface LawyerProfileSectionProps {
 
 const LawyerProfileSection = ({ profile }: LawyerProfileSectionProps) => {
     return (
-        <section className="section bg-white border-y border-gray-100 py-24">
-            <Container>
-                <div className="grid md:grid-cols-2 gap-16 items-start">
+        <section className="relative bg-white border-y border-gray-100 flex flex-col md:block">
+            
+            {/* Right Column: Edge-to-Edge Full Height Editorial Image */}
+            <div className="order-1 md:order-2 md:absolute md:top-0 md:bottom-0 md:right-0 md:w-[50%] lg:w-[55%] relative w-full h-[500px] sm:h-[600px] md:h-auto overflow-hidden bg-stone-900">
+                
+                {/* 
+                  The portrait image strongly contrasted against its subtle dark gradients. 
+                  Tighter crop on face via scale, avoiding passport styling.
+                */}
+                <img
+                    src="/images/advocate-portrait.jpeg"
+                    alt={profile.name}
+                    className="absolute inset-0 w-full h-full object-cover object-[50%_15%] scale-[1.05]"
+                />
 
-                    {/* Left Column: Content */}
-                    <div className="order-2 md:order-1 flex flex-col justify-center h-full">
-                        <div className="mb-8">
-                            <h2 className="text-4xl md:text-5xl font-serif text-gray-900 leading-tight mb-3">
+                {/* Sublte dark background gradient to give contrast and depth to the black coat */}
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-900/10 to-transparent mix-blend-multiply"></div>
+
+                {/* Left side soft gradient integrating the image flawlessly into the stark white text column */}
+                <div className="absolute inset-y-0 left-0 w-32 md:w-64 lg:w-96 bg-gradient-to-r from-white via-white/60 to-transparent hidden md:block"></div>
+                
+                {/* Mobile top-text integration fade */}
+                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent md:hidden"></div>
+            </div>
+
+            <Container className="relative z-10 order-2 md:order-1">
+                <div className="grid md:grid-cols-2">
+                    {/* Left Column: Authoritative Text Layout */}
+                    <div className="md:pr-12 lg:pr-24 py-16 md:py-32 flex flex-col justify-center min-h-[60vh] md:min-h-[85vh]">
+                        
+                        <div className="mb-10">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-tight mb-4">
                                 {profile.name}
                             </h2>
-                            <p className="text-sm font-medium text-gray-500 tracking-[0.2em] uppercase">
-                                {profile.designation}, {profile.location}
+                            <p className="text-xs md:text-sm font-semibold text-gray-500 tracking-[0.25em] uppercase">
+                                {profile.designation} <span className="mx-2 font-light text-gray-300">|</span> {profile.location}
                             </p>
                         </div>
 
-                        {/* Authority Line */}
+                        {/* Strong Authority Experience Quote */}
                         {profile.experienceLine && (
-                            <div className="mb-8 pl-6 border-l-2 border-gray-900">
-                                <p className="text-xl font-serif font-medium text-gray-900 italic">
+                            <div className="mb-10 pl-8 md:pl-10 border-l-[3px] border-gray-900">
+                                <p className="text-xl md:text-2xl font-serif font-medium text-gray-900 italic leading-snug">
                                     "{profile.experienceLine}"
                                 </p>
                             </div>
                         )}
 
-                        <div className="w-12 h-px bg-gray-300 mb-8"></div>
+                        <div className="w-16 h-px bg-gray-300 mb-10"></div>
 
-                        <p className="text-lg text-gray-600 leading-relaxed font-light mb-12 max-w-lg">
+                        <p className="text-lg text-gray-600 leading-relaxed font-light mb-16 max-w-lg">
                             {profile.bio}
                         </p>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 border-t border-gray-100 pt-8">
+                        <div className="grid sm:grid-cols-2 gap-12 pt-10 border-t border-gray-100">
                             <div>
-                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Focus Areas</h4>
-                                <ul className="space-y-2">
+                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-6">Focus Areas</h4>
+                                <ul className="space-y-4">
                                     {profile.focusAreas?.map((area, index) => (
-                                        <li key={index} className="text-gray-700 text-sm font-medium border-b border-gray-50 pb-1 last:border-0">{area}</li>
+                                        <li key={index} className="flex items-center text-gray-600 text-sm font-medium">
+                                            <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mr-3"></span>
+                                            {area}
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Admitted to Practice</h4>
-                                <ul className="space-y-2">
+                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-6">Admitted to Practice</h4>
+                                <ul className="space-y-4">
                                     {profile.courts.map((court, index) => (
-                                        <li key={index} className="text-gray-700 text-sm font-medium border-b border-gray-50 pb-1 last:border-0">{court}</li>
+                                        <li key={index} className="flex items-center text-gray-600 text-sm font-medium">
+                                            <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mr-3"></span>
+                                            {court}
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Right Column: Portrait */}
-                    <div className="order-1 md:order-2 flex justify-end items-center">
-                        <div className="relative w-full max-w-md aspect-[3/4] bg-stone-100 overflow-hidden shadow-sm">
-                            <img
-                                src="/images/advocate-portrait.png"
-                                alt={profile.name}
-                                className="w-full h-full object-cover grayscale contrast-110"
-                            />
-                        </div>
                     </div>
-
                 </div>
             </Container>
+
         </section>
     );
 };
