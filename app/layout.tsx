@@ -46,6 +46,7 @@ export default function RootLayout({
           firmName={siteConfig.firmName}
           address="B-83, Sector 72, Noida, Uttar Pradesh"
           phone={siteConfig.phone}
+          whatsapp={siteConfig.whatsapp}
           practiceLinks={getAllPracticeItems().slice(0, 8).map((item) => ({
             label: item.title,
             href: `/practice/${item.slug}`,

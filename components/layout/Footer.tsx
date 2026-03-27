@@ -10,6 +10,7 @@ interface FooterProps {
     address: string;
     phone: string;
     email?: string;
+    whatsapp?: string;
     practiceLinks: Link[]; // Kept for interface compatibility but we might use specific ones
 }
 
@@ -18,6 +19,7 @@ const Footer = ({
     address,
     phone,
     email,
+    whatsapp,
 }: FooterProps) => {
     const currentYear = new Date().getFullYear();
 
@@ -126,12 +128,16 @@ const Footer = ({
                         >
                             Call Now
                         </a>
-                        <a
-                            href="#" // Replace with actual WhatsApp link if available in props or siteConfig
-                            className="px-6 py-2 border border-slate-600 text-white text-sm font-medium rounded-sm hover:bg-slate-800 transition-colors"
-                        >
-                            WhatsApp
-                        </a>
+                        {whatsapp && (
+                            <a
+                                href={`https://wa.me/${whatsapp}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-6 py-2 border border-slate-600 text-white text-sm font-medium rounded-sm hover:bg-slate-800 transition-colors"
+                            >
+                                WhatsApp
+                            </a>
+                        )}
                     </div>
                 </div>
 
