@@ -38,14 +38,17 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
     const relatedItems = categoryData?.items.filter(i => i.slug !== item.slug).slice(0, 4) || [];
 
     return (
-        <main className="min-h-screen bg-white pt-24 pb-0">
+        <main className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-[#f8f6f2] to-[#fdfcfb] border-b border-[rgba(15,23,42,0.08)] py-12 md:py-20 lg:py-24">
+            <section className="bg-gradient-to-b from-[#f8f6f2] to-white border-b border-[rgba(15,23,42,0.08)] pt-6 pb-12 md:pt-10 md:pb-16 lg:pt-12 lg:pb-20 relative">
+                {/* Subtle top gradient accent */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#b08d57]/20 to-transparent"></div>
+                
                 <Container>
                     <div className="max-w-6xl mx-auto">
                         {/* Breadcrumb & Navigation */}
-                        <div className="mb-12 md:mb-16">
-                            <div className="flex flex-wrap items-center text-xs sm:text-sm font-sans text-gray-400 mb-6 tracking-wide">
+                        <div className="mb-8 md:mb-12">
+                            <div className="flex flex-wrap items-center text-xs sm:text-sm font-sans text-gray-400 mb-4 tracking-wide">
                                 <Link href="/" className="hover:text-[#b08d57] transition-colors">Home</Link>
                                 <span className="mx-2 sm:mx-3 text-gray-300">/</span>
                                 <Link href="/#practice-areas" className="hover:text-[#b08d57] transition-colors">Practice Areas</Link>
@@ -63,13 +66,13 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
 
                         {/* Hero Content */}
                         <div className="max-w-4xl">
-                            <span className="block text-xs md:text-sm font-sans font-semibold tracking-[0.2em] text-[#b08d57] uppercase mb-4">
+                            <span className="block text-xs md:text-sm font-sans font-semibold tracking-[0.2em] text-[#b08d57] uppercase mb-3">
                                 Practice Area <span className="mx-3 opacity-40">|</span> {category}
                             </span>
-                            <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-normal text-[#0f172a] mb-8 leading-[1.1]">
+                            <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-normal text-[#0f172a] mb-6 leading-[1.1]">
                                 {item.title}
                             </h1>
-                            <div className="w-16 h-[1px] bg-[#b08d57] mb-8"></div>
+                            <div className="w-16 h-[1px] bg-[#b08d57] mb-6"></div>
                             <p className="font-sans text-lg md:text-xl lg:text-2xl text-[#5b6470] leading-relaxed max-w-2xl">
                                 {item.shortDescription}
                             </p>
@@ -79,7 +82,7 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
             </section>
 
             {/* Content Section */}
-            <section className="py-16 md:py-24 lg:py-32">
+            <section className="py-12 md:py-16 lg:py-20">
                 <Container>
                     <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24">
                         {/* Main Content */}

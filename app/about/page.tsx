@@ -1,28 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import { siteConfig } from "@/data/siteConfig";
-import { getAllPracticeItems } from "@/data/practiceAreas";
 import Link from "next/link";
 
 export default function AboutPage() {
     return (
         <>
-            <Header
-                logoText={siteConfig.firmName}
-                phone={siteConfig.phone}
-                whatsapp={siteConfig.whatsapp}
-                navLinks={[
-                    { label: "Home", href: "/" },
-                    { label: "About", href: "/about" },
-                    { label: "Practice Areas", href: "/#practice-areas" },
-                    { label: "Contact", href: "/contact" },
-                ]}
-            />
-
             <Breadcrumb currentPageTitle="About Us" />
 
             <main>
@@ -185,16 +169,6 @@ export default function AboutPage() {
                     </Container>
                 </section>
             </main>
-
-            <Footer
-                firmName={siteConfig.firmName}
-                address="B-83, Sector 72, Noida, Uttar Pradesh"
-                phone={siteConfig.phone}
-                practiceLinks={getAllPracticeItems().slice(0, 8).map((area) => ({
-                    label: area.title,
-                    href: `/practice/${area.slug}`,
-                }))}
-            />
         </>
     );
 }
