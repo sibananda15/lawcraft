@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import HeroSection from "@/components/sections/HeroSection";
 import { siteConfig } from "@/data/siteConfig";
 import PracticeAreasSection from "@/components/sections/PracticeAreasSection";
-import { practiceAreas } from "@/data/practiceAreas";
+import { getAllPracticeItems } from "@/data/practiceAreas";
 import LawyerProfileSection from "@/components/sections/LawyerProfileSection";
 import { lawyerProfile } from "@/data/lawyerProfile";
 import WhyChoose from "@/components/sections/WhyChoose";
@@ -44,9 +44,9 @@ export default function HomePage() {
           firmName={siteConfig.firmName}
           address="B-83, Sector 72, Noida, Uttar Pradesh"
           phone={siteConfig.phone}
-          practiceLinks={practiceAreas.map((area) => ({
-            label: area.title,
-            href: area.href,
+          practiceLinks={getAllPracticeItems().slice(0, 8).map((item) => ({
+            label: item.title,
+            href: `/practice/${item.slug}`,
           }))}
         />
         <StickyMobileCTA

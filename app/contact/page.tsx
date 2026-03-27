@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { siteConfig } from "@/data/siteConfig";
-import { practiceAreas } from "@/data/practiceAreas";
+import { getAllPracticeItems } from "@/data/practiceAreas";
 import Link from "next/link";
 
 export default function ContactPage() {
@@ -166,9 +166,9 @@ export default function ContactPage() {
                 firmName={siteConfig.firmName}
                 address="B-83, Sector 72, Noida, Uttar Pradesh"
                 phone={siteConfig.phone}
-                practiceLinks={practiceAreas.map((area) => ({
+                practiceLinks={getAllPracticeItems().slice(0, 8).map((area) => ({
                     label: area.title,
-                    href: area.href,
+                    href: `/practice/${area.slug}`,
                 }))}
             />
         </>
