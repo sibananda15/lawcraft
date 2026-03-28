@@ -25,36 +25,36 @@ const HeroSection = ({
                     <div className="w-full lg:w-1/2 flex flex-col justify-center order-1">
 
                         {/* Subtitle / Availability Urgency Indicator */}
-                        <div className="mb-5 flex items-center gap-3">
+                        <div className="mb-3 lg:mb-5 flex items-center gap-2 lg:gap-3">
                             <span className="flex h-2 w-2 relative">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C5A46D] opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C5A46D]"></span>
                             </span>
-                            <span className="text-[#C5A46D] font-semibold tracking-[0.15em] text-[11px] md:text-[13px] uppercase">
+                            <span className="text-[#C5A46D] font-semibold tracking-[0.1em] lg:tracking-[0.15em] text-[10px] sm:text-[11px] md:text-[13px] uppercase">
                                 Available for Immediate Consultation
                             </span>
                         </div>
 
                         {/* Name */}
-                        <h1 className="font-serif text-[42px] md:text-[48px] lg:text-[56px] font-bold text-[#0B1C2E] leading-[1.1] mb-2">
+                        <h1 className="font-serif text-[34px] sm:text-[42px] md:text-[48px] lg:text-[56px] font-bold text-[#0B1C2E] leading-[1.1] mb-1 lg:mb-2">
                             {lawyerProfile.name}
                         </h1>
                         
                         {/* Practice Positioning */}
-                        <p className="text-[#5B6470] font-serif text-[20px] md:text-[22px] italic tracking-wide mb-8">
+                        <p className="text-[#5B6470] font-serif text-[18px] sm:text-[20px] md:text-[22px] italic tracking-wide mb-4 lg:mb-8">
                             High-Stakes Litigation & Dispute Resolution
                         </p>
 
                         {/* Thin divider line under name */}
-                        <div className="w-[60px] h-[1px] bg-[rgba(197,164,109,0.5)] mb-8 relative"></div>
+                        <div className="w-[60px] h-[1px] bg-[rgba(197,164,109,0.5)] mb-5 lg:mb-8 relative"></div>
 
                         {/* Tagline / Problem-based Urgency */}
-                        <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-serif text-[#0B1C2E] font-medium leading-[1.2] mb-5 max-w-2xl">
+                        <h2 className="text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-serif text-[#0B1C2E] font-medium leading-[1.2] mb-3 lg:mb-5 max-w-2xl">
                             Facing a critical legal dispute that can't wait?
                         </h2>
 
                         {/* Description / Reassurance */}
-                        <p className="text-[#5B6470] text-[16px] leading-[1.7] max-w-lg mb-10">
+                        <p className="text-[#5B6470] text-[15px] sm:text-[16px] leading-[1.6] lg:leading-[1.7] max-w-lg mb-6 lg:mb-10">
                             When your freedom, assets, or business are on the line, generic advice isn't enough. Secure direct, uncompromising legal counsel designed to protect your interests immediately.
                         </p>
 
@@ -138,7 +138,7 @@ const HeroSection = ({
                                 <img
                                     src="/images/advocate-portrait.jpeg"
                                     alt={lawyerProfile.name}
-                                    className="w-full h-[380px] sm:h-[450px] lg:h-[600px] object-cover object-top block transform transition-transform hover:scale-[1.03] duration-[1.5s] ease-out"
+                                    className="w-full h-[300px] sm:h-[400px] lg:h-[600px] object-cover object-top block transform transition-transform hover:scale-[1.03] duration-[1.5s] ease-out"
                                 />
                                 
                                 {/* Very subtle directional light overlay (left to right) simulating natural studio rim/depth lighting */}
