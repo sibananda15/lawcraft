@@ -17,108 +17,108 @@ const HeroSection = ({
     secondaryAction,
 }: HeroSectionProps) => {
     return (
-        <section className="relative w-full overflow-hidden bg-[#f8f9fa] border-b border-stone-200/50 py-16 lg:py-24 xl:py-28">
-
-            {/* Soft background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#f8f9fa] via-[#f8f9fa] to-[#f1f2f4] z-0"></div>
-
+        <section className="relative w-full overflow-hidden bg-[#F8F6F2] border-b border-[rgba(11,28,46,0.08)] py-[80px] lg:py-[100px]">
             <Container className="relative z-10 w-full">
-                {/* Standard flex distribution enforces strict grid layout so the image container can't blindly stretch to 90vh */}
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8 xl:gap-16 w-full">
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full max-w-7xl mx-auto">
 
-                    {/* LEFT SIDE (55% width) text content */}
-                    <div className="w-full lg:w-[55%] flex flex-col justify-center order-2 lg:order-1 pt-6 lg:pt-0">
+                    {/* LEFT SIDE: Text content */}
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center order-2 lg:order-1">
 
-                        {/* Subtitle */}
-                        <div className="mb-5">
-                            <span className="text-stone-500 font-bold tracking-[0.25em] text-xs md:text-sm uppercase">
-                                Senior Advocate <span className="mx-3 text-stone-300">|</span> New Delhi, India
+                        {/* Subtitle / Availability Urgency Indicator */}
+                        <div className="mb-5 flex items-center gap-3">
+                            <span className="flex h-2 w-2 relative">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C5A46D] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C5A46D]"></span>
+                            </span>
+                            <span className="text-[#C5A46D] font-semibold tracking-[0.15em] text-[11px] md:text-[13px] uppercase">
+                                Available for Immediate Consultation
                             </span>
                         </div>
 
                         {/* Name */}
-                        <h1 className="font-serif text-[3.25rem] leading-[1.05] md:text-5xl lg:text-6xl xl:text-[5.5rem] font-bold text-stone-900 tracking-tight mb-3">
+                        <h1 className="font-serif text-[42px] md:text-[48px] lg:text-[56px] font-bold text-[#0B1C2E] leading-[1.1] mb-2">
                             {lawyerProfile.name}
                         </h1>
+                        
+                        {/* Practice Positioning */}
+                        <p className="text-[#5B6470] font-serif text-[20px] md:text-[22px] italic tracking-wide mb-8">
+                            High-Stakes Litigation & Dispute Resolution
+                        </p>
 
                         {/* Thin divider line under name */}
-                        <div className="w-12 h-[2px] bg-[#1f2937]/90 mt-8 mb-6"></div>
+                        <div className="w-[60px] h-[1px] bg-[rgba(197,164,109,0.5)] mb-8 relative"></div>
 
-                        {/* Tagline */}
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-stone-900 font-medium leading-[1.3] mb-5 max-w-2xl">
-                            Strategic Legal Representation for High-Stakes Matters
+                        {/* Tagline / Problem-based Urgency */}
+                        <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-serif text-[#0B1C2E] font-medium leading-[1.2] mb-5 max-w-2xl">
+                            Facing a critical legal dispute that can't wait?
                         </h2>
 
-                        {/* Description (1-2 lines only) */}
-                        <p className="text-[#6b7280] text-lg md:text-xl md:leading-[1.7] font-light max-w-lg mb-7">
-                            Trusted counsel for complex criminal, civil, and corporate disputes — with a focus on clarity, speed, and results.
+                        {/* Description / Reassurance */}
+                        <p className="text-[#5B6470] text-[16px] leading-[1.7] max-w-lg mb-10">
+                            When your freedom, assets, or business are on the line, generic advice isn't enough. Secure direct, uncompromising legal counsel designed to protect your interests immediately.
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-6 mb-16">
+                        <div className="flex flex-col sm:flex-row gap-4 mb-4">
                             <a
                                 href={primaryAction.href}
-                                className="inline-flex justify-center items-center px-12 py-5 bg-[#0f172a] text-white text-sm md:text-base font-medium tracking-widest shadow-md hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/20 hover:bg-[#1e293b] transition-all duration-300 rounded-sm"
+                                className="inline-flex justify-center items-center px-8 py-4 bg-[#0B1C2E] text-white text-[14px] font-semibold tracking-[0.15em] uppercase shadow-[0_4px_14px_rgba(11,28,46,0.15)] hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(11,28,46,0.2)] hover:bg-[#C5A46D] transition-all duration-300 rounded-sm"
                             >
                                 {primaryAction.label}
                             </a>
 
                             <a
                                 href={secondaryAction.href}
-                                className="inline-flex justify-center items-center px-12 py-5 bg-white border border-slate-200 text-slate-800 text-sm md:text-base font-medium tracking-widest hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300 rounded-sm"
+                                target={primaryAction.label.includes("WhatsApp") ? undefined : "_blank"}
+                                rel={primaryAction.label.includes("WhatsApp") ? undefined : "noopener noreferrer"}
+                                className="inline-flex justify-center items-center px-8 py-4 bg-transparent border border-[rgba(11,28,46,0.15)] text-[#0B1C2E] text-[14px] font-semibold tracking-[0.15em] uppercase hover:-translate-y-1 hover:shadow-md hover:border-[#C5A46D] hover:text-[#C5A46D] transition-all duration-300 rounded-sm"
                             >
                                 {secondaryAction.label}
                             </a>
                         </div>
+                        
+                        {/* Trust Microcopy */}
+                        <div className="mb-12 text-[12px] font-medium text-[#5B6470] tracking-wide">
+                            <span className="flex items-center gap-2">
+                                <svg className="w-4 h-4 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"/></svg>
+                                100% Confidential Context &nbsp;•&nbsp; Direct Advocate Consultation
+                            </span>
+                        </div>
 
                         {/* Credibility Strip */}
-                        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4 text-xs md:text-sm font-semibold text-stone-500 uppercase tracking-widest">
+                        <div className="flex flex-wrap items-center gap-3 text-[12px] font-semibold text-[#5B6470] uppercase tracking-[0.1em]">
                             <span>20+ Years Experience</span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-stone-300 hidden sm:block"></span>
-                            <span>Supreme Court of India</span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-stone-300 hidden sm:block"></span>
-                            <span>Delhi High Court</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-[rgba(197,164,109,0.3)]"></span>
+                            <span>Supreme Court Appointed</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-[rgba(197,164,109,0.3)]"></span>
+                            <span>Trial-Ready Strategist</span>
                         </div>
 
                     </div>
 
-                    {/* RIGHT SIDE (45% width fixed aspect ratio image container) */}
-                    <div className="w-full lg:w-[45%] flex justify-center lg:justify-end order-1 lg:order-2 shrink-0">
-                        {/* 
-                          Fix container sizing & Add safe spacing:
-                          - max-w-[500px] ensures it doesn't arbitrarily stretch
-                          - pt-6 inside wrapper explicitly guarantees top 24px of breathing space above the head 
-                          - aspect-[4/5] hard-locks layout proportions
-                        */}
-                        <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[500px] xl:max-w-[550px] aspect-[4/5] bg-transparent pt-6 sm:pt-8" style={{ boxShadow: '-40px 0 60px rgba(0,0,0,0.05)' }}>
-                            {/* 
-                              Fix image cropping (CRITICAL FIX):
-                              - object-cover exactly aligns with the wrapper shape
-                              - object-top fundamentally locks the top boundary preventing forehead cutoffs
-                              - zero scale transforms or zooms to ruin composition
-                            */}
-                            <img
-                                src="/images/advocate-portrait.jpeg"
-                                alt={lawyerProfile.name}
-                                className="w-full h-full object-cover object-top contrast-[0.95] brightness-[1.05] sepia-[0.10] rounded-sm"
-                            />
+                    {/* RIGHT SIDE: Integrated Portrait Presentation */}
+                    <div className="w-full lg:w-1/2 flex justify-center lg:justify-end order-1 lg:order-2 shrink-0 relative mt-8 lg:mt-0">
+                        {/* Decorative depth elements to break the flat background */}
+                        <div className="absolute top-10 right-[-5%] w-[80%] h-[80%] bg-[#C5A46D]/10 rounded-full blur-[60px] -z-10 pointer-events-none"></div>
+                        <div className="absolute -bottom-10 right-[15%] w-[60%] h-[60%] bg-[#0B1C2E]/5 rounded-full blur-[60px] -z-10 pointer-events-none"></div>
 
-                            {/* Warm tint/shadow composite */}
-                            <div className="absolute inset-0 bg-stone-200/5 mix-blend-lighten pointer-events-none rounded-sm"></div>
-                            <div className="absolute inset-0 bg-amber-700/5 mix-blend-overlay pointer-events-none rounded-sm"></div>
-
-                            {/* 
-                              Remove aggressive gradient overlay: 
-                              Strictly restrained left 25-30% area (w-24/32/40 max),
-                              60%+ of the central face region stays completely untouched by overlapping styling colors.
-                            */}
-                            <div className="absolute inset-y-0 left-0 w-24 md:w-32 lg:w-40 bg-gradient-to-r from-[#f8f9fa] to-transparent pointer-events-none z-10 rounded-l-sm"></div>
-
-                            {/* Slight editorial noise composite */}
-                            <div
-                                className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none rounded-sm"
-                                style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" }}
-                            ></div>
+                        {/* Outer wrapper controls the bottom fade mask so both image and shadow fade gracefully into the layout */}
+                        <div 
+                            className="relative w-full max-w-[420px] lg:max-w-[480px] xl:max-w-[500px] pb-4"
+                            style={{ 
+                                WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
+                                maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)" 
+                            }}
+                        >
+                            {/* Inner elegantly rounded container holding the portrait */}
+                            <div className="w-full rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(11,28,46,0.08)] bg-transparent">
+                                <img
+                                    src="/images/advocate-portrait.jpeg"
+                                    alt={lawyerProfile.name}
+                                    className="w-full h-auto object-cover object-top block transform transition-transform hover:scale-[1.02] duration-[1.5s] ease-out"
+                                    style={{ minHeight: "500px", maxHeight: "640px" }}
+                                />
+                            </div>
                         </div>
                     </div>
 

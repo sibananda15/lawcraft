@@ -164,21 +164,14 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
-                        <a
-                            href={`tel:${phone.replace(/\s+/g, "")}`}
-                            className="hidden lg:inline-flex items-center justify-center text-xs font-semibold font-sans text-[#0f172a] border border-[rgba(15,23,42,0.15)] px-6 py-2.5 hover:border-[#b08d57] hover:text-[#b08d57] transition-colors duration-300 uppercase tracking-widest rounded-sm"
-                        >
-                            Call Now
-                        </a>
-
                         {whatsapp && (
                             <a
                                 href={`https://wa.me/${whatsapp}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-[#0f172a] text-white px-6 py-2.5 text-xs font-semibold font-sans hover:bg-[#b08d57] transition-all duration-300 uppercase tracking-widest rounded-sm shadow-[0_4px_10px_rgba(15,23,42,0.1)] hover:shadow-[0_6px_15px_rgba(15,23,42,0.15)]"
+                                className="bg-[#0f172a] text-white px-7 py-3 text-xs font-semibold font-sans hover:bg-[#b08d57] transition-all duration-300 uppercase tracking-widest rounded-sm shadow-[0_4px_10px_rgba(15,23,42,0.1)] hover:shadow-[0_6px_15px_rgba(15,23,42,0.15)]"
                             >
-                                WhatsApp
+                                WhatsApp Now
                             </a>
                         )}
                     </div>

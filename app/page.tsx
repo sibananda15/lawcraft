@@ -11,12 +11,15 @@ export default function HomePage() {
   return (
     <>
       <HeroSection
-        primaryAction={{ label: "Call Now", href: "tel:+91 9810053761" }}
-        secondaryAction={{ label: "WhatsApp", href: "https://wa.me/919999999999" }}
+        primaryAction={{ label: "Get Legal Consultation", href: "tel:+919810053761" }}
+        secondaryAction={{ label: "WhatsApp Now", href: "https://wa.me/919810053761" }}
       />
+      
+      {/* Trust Building Section explicitly placed below Hero for immediate reassurance */}
+      <WhyChoose />
+
       <PracticeAreasSection />
 
-      <WhyChoose />
       <ContactSection
         heading="Contact Advocate"
         phone={siteConfig.phone}
