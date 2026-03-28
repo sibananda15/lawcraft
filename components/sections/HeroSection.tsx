@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "../ui/Container";
 import { lawyerProfile } from "@/data/lawyerProfile";
-
+import { siteConfig } from "@/data/siteConfig";
 interface HeroAction {
     label: string;
     href: string;
@@ -22,7 +22,7 @@ const HeroSection = ({
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full max-w-7xl mx-auto">
 
                     {/* LEFT SIDE: Text content */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center order-2 lg:order-1">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center order-1">
 
                         {/* Subtitle / Availability Urgency Indicator */}
                         <div className="mb-5 flex items-center gap-3">
@@ -77,12 +77,43 @@ const HeroSection = ({
                             </a>
                         </div>
                         
-                        {/* Trust Microcopy */}
-                        <div className="mb-12 text-[12px] font-medium text-[#5B6470] tracking-wide">
-                            <span className="flex items-center gap-2">
-                                <svg className="w-4 h-4 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"/></svg>
-                                100% Confidential Context &nbsp;•&nbsp; Direct Advocate Consultation
-                            </span>
+                        {/* Cohesive Conversion & Trust Block */}
+                        <div className="flex flex-col gap-2 mb-12 sm:pl-1">
+                            {/* Line 1 & 2: Direct Phone and Availability Threshold */}
+                            <div className="flex flex-col gap-1 w-fit">
+                                <a 
+                                    href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`} 
+                                    className="inline-flex items-center gap-2 group w-fit transition-colors duration-200"
+                                >
+                                    <svg className="w-5 h-5 text-[#C5A46D] group-hover:scale-110 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                    <span className="text-[#5B6470] text-[16px] font-medium tracking-wide">
+                                        Speak Now: <strong className="text-[#0B1C2E] font-bold text-[18px] md:text-[20px] ml-1 group-hover:text-[#C5A46D] transition-colors">{siteConfig.phone}</strong>
+                                    </span>
+                                </a>
+                                <span className="flex items-center gap-2 text-[12px] font-semibold text-green-700/80 ml-8 pl-0.5">
+                                    <span className="flex h-1.5 w-1.5 relative">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-600"></span>
+                                    </span>
+                                    Available within 2 minutes
+                                </span>
+                            </div>
+                            
+                            {/* Line 3: High-Trust Protocol Indicators */}
+                            <div className="text-[13px] font-medium text-[#5B6470] tracking-wide flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 mt-3">
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
+                                    Immediate Response
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
+                                    Direct Advocate Access
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
+                                    Fully Confidential
+                                </span>
+                            </div>
                         </div>
 
                         {/* Credibility Strip */}
@@ -97,27 +128,24 @@ const HeroSection = ({
                     </div>
 
                     {/* RIGHT SIDE: Integrated Portrait Presentation */}
-                    <div className="w-full lg:w-1/2 flex justify-center lg:justify-end order-1 lg:order-2 shrink-0 relative mt-8 lg:mt-0">
-                        {/* Decorative depth elements to break the flat background */}
-                        <div className="absolute top-10 right-[-5%] w-[80%] h-[80%] bg-[#C5A46D]/10 rounded-full blur-[60px] -z-10 pointer-events-none"></div>
-                        <div className="absolute -bottom-10 right-[15%] w-[60%] h-[60%] bg-[#0B1C2E]/5 rounded-full blur-[60px] -z-10 pointer-events-none"></div>
-
-                        {/* Outer wrapper controls the bottom fade mask so both image and shadow fade gracefully into the layout */}
-                        <div 
-                            className="relative w-full max-w-[420px] lg:max-w-[480px] xl:max-w-[500px] pb-4"
-                            style={{ 
-                                WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
-                                maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)" 
-                            }}
-                        >
-                            {/* Inner elegantly rounded container holding the portrait */}
-                            <div className="w-full rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(11,28,46,0.08)] bg-transparent">
+                    <div className="w-full lg:w-1/2 flex justify-center lg:justify-end order-2 shrink-0 relative mt-10 lg:mt-0">
+                        {/* Outer wrapper sizing */}
+                        <div className="relative w-full max-w-[420px] lg:max-w-[480px] xl:max-w-[500px]">
+                            
+                            {/* Premium editorial container with barely-noticeable background contrast and ultra-soft layered shadow */}
+                            <div className="w-full rounded-[16px] overflow-hidden bg-[#EFECE6] shadow-[0_8px_30px_rgba(11,28,46,0.03),0_1px_3px_rgba(11,28,46,0.01)] relative border border-[rgba(11,28,46,0.02)]">
+                                
                                 <img
                                     src="/images/advocate-portrait.jpeg"
                                     alt={lawyerProfile.name}
-                                    className="w-full h-auto object-cover object-top block transform transition-transform hover:scale-[1.02] duration-[1.5s] ease-out"
-                                    style={{ minHeight: "500px", maxHeight: "640px" }}
+                                    className="w-full h-[380px] sm:h-[450px] lg:h-[600px] object-cover object-top block transform transition-transform hover:scale-[1.03] duration-[1.5s] ease-out"
                                 />
+                                
+                                {/* Very subtle directional light overlay (left to right) simulating natural studio rim/depth lighting */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-[rgba(11,28,46,0.03)] to-transparent pointer-events-none"></div>
+
+                                {/* Soft bottom fade strictly limited to max 80px height to blend the portrait naturally without heavy fog */}
+                                <div className="absolute bottom-0 left-0 w-full h-[80px] bg-gradient-to-t from-[#EFECE6] to-transparent pointer-events-none"></div>
                             </div>
                         </div>
                     </div>
