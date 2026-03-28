@@ -18,17 +18,17 @@ const HeroSection = ({
 }: HeroSectionProps) => {
     return (
         <section className="relative w-full overflow-hidden bg-[#f8f9fa] border-b border-stone-200/50 py-16 lg:py-24 xl:py-28">
-            
+
             {/* Soft background gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#f8f9fa] via-[#f8f9fa] to-[#f1f2f4] z-0"></div>
 
             <Container className="relative z-10 w-full">
                 {/* Standard flex distribution enforces strict grid layout so the image container can't blindly stretch to 90vh */}
                 <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8 xl:gap-16 w-full">
-                    
+
                     {/* LEFT SIDE (55% width) text content */}
                     <div className="w-full lg:w-[55%] flex flex-col justify-center order-2 lg:order-1 pt-6 lg:pt-0">
-                        
+
                         {/* Subtitle */}
                         <div className="mb-5">
                             <span className="text-stone-500 font-bold tracking-[0.25em] text-xs md:text-sm uppercase">
@@ -46,12 +46,12 @@ const HeroSection = ({
 
                         {/* Tagline */}
                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-stone-900 font-medium leading-[1.3] mb-5 max-w-2xl">
-                            Strategic Legal Representation in High-Stakes Litigation
+                            Strategic Legal Representation for High-Stakes Matters
                         </h2>
 
                         {/* Description (1-2 lines only) */}
                         <p className="text-[#6b7280] text-lg md:text-xl md:leading-[1.7] font-light max-w-lg mb-7">
-                            Trusted counsel for complex criminal, property, and constitutional matters.
+                            Trusted counsel for complex criminal, civil, and corporate disputes — with a focus on clarity, speed, and results.
                         </p>
 
                         {/* CTA Buttons */}
@@ -113,15 +113,15 @@ const HeroSection = ({
                               60%+ of the central face region stays completely untouched by overlapping styling colors.
                             */}
                             <div className="absolute inset-y-0 left-0 w-24 md:w-32 lg:w-40 bg-gradient-to-r from-[#f8f9fa] to-transparent pointer-events-none z-10 rounded-l-sm"></div>
-                            
+
                             {/* Slight editorial noise composite */}
-                            <div 
-                                className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none rounded-sm" 
+                            <div
+                                className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none rounded-sm"
                                 style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" }}
                             ></div>
                         </div>
                     </div>
-                    
+
                 </div>
             </Container>
 
