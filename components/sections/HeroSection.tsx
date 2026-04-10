@@ -137,7 +137,7 @@ const HeroSection = ({
                                 
                                 <img
                                     src="/images/advocate-portrait.jpeg"
-                                    alt={lawyerProfile.name}
+                                    alt="Portrait of Senior Advocate Rajendra Panigrahi"
                                     className="w-full h-[300px] sm:h-[400px] lg:h-[600px] object-cover object-top block transform transition-transform hover:scale-[1.03] duration-[1.5s] ease-out"
                                 />
                                 

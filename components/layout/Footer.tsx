@@ -25,10 +25,10 @@ const Footer = ({
 
     // Specific Practice Areas requested
     const topPracticeAreas = [
-        { label: "Criminal Defence", href: "/practice-areas/criminal-defense" },
-        { label: "Family & Matrimonial", href: "/practice-areas/family-law" },
-        { label: "Property Litigation", href: "/practice-areas/property-real-estate-disputes" },
-        { label: "Corporate & Commercial", href: "/practice-areas/corporate-commercial-law" },
+        { label: "Criminal Defence", href: "/practice/criminal-defense" },
+        { label: "Family & Matrimonial", href: "/practice/family-law" },
+        { label: "Property Litigation", href: "/practice/property-real-estate-disputes" },
+        { label: "Corporate & Commercial", href: "/practice/corporate-commercial-law" },
     ];
 
     // Splitting address string natively into two lines if it contains a comma
@@ -81,15 +81,54 @@ const Footer = ({
                                 Advocates & Legal Consultants
                             </p>
                         </div>
-                        
-                        <div className="flex flex-col space-y-6 lg:max-w-sm">
-                            <address className="not-italic text-[#a1b0c0] text-[16px] leading-[1.8] flex flex-col">
-                                {addressParts.map((part, index) => (
-                                    <span key={index}>{part}{index < addressParts.length - 1 ? ',' : ''}</span>
-                                ))}
-                            </address>
 
-                            <div className="flex flex-col space-y-2">
+                        <div className="flex flex-col space-y-6 lg:max-w-sm">
+                            <a
+                                href="https://www.google.com/maps/place/Law+craft+Advocates/@28.5808296,77.3793651,17z"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Open Lawcraft Advocates location in Google Maps"
+                                className="group flex items-start text-[#a1b0c0] text-[16px] leading-[1.8] hover:text-[#C5A46D] hover:cursor-pointer transition-colors duration-300"
+                            >
+                                <svg className="w-5 h-5 mr-3 mt-1 shrink-0 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <address className="not-italic flex flex-col group-hover:underline underline-offset-4 decoration-[1px]">
+                                    {addressParts.map((part, index) => (
+                                        <span key={index}>{part}{index < addressParts.length - 1 ? ',' : ''}</span>
+                                    ))}
+                                </address>
+                            </a>
+
+                            {/* Premium Map Preview Card */}
+                            <div className="flex flex-col space-y-3">
+                                <div className="w-full shadow-lg rounded-[12px] overflow-hidden border border-[rgba(255,255,255,0.06)] bg-[#0B1C2E]/50">
+                                    <iframe
+                                        src="https://www.google.com/maps?q=28.5808296,77.3793651&z=15&output=embed"
+                                        width="100%"
+                                        height="250"
+                                        style={{ border: 0 }}
+                                        allowFullScreen={false}
+                                        loading="lazy"
+                                    ></iframe>
+                                </div>
+
+                                {/* Get Directions Button */}
+                                <a
+                                    href="https://www.google.com/maps/dir/?api=1&destination=28.5808296,77.3793651"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center text-[#C5A46D] hover:text-white font-sans text-[13px] font-semibold tracking-wide transition-colors uppercase group w-fit"
+                                >
+                                    Get Directions 
+                                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div className="flex flex-col space-y-2 mt-2">
                                 <span className="text-[11px] text-[#71869d] uppercase tracking-[0.2em] font-semibold">Direct Line</span>
                                 <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-[24px] font-serif text-[#C5A46D] hover:text-white transition-colors">
                                     {phone}
@@ -162,7 +201,7 @@ const Footer = ({
                         </p>
                     </div>
                 </div>
-                
+
             </div>
         </footer>
     );

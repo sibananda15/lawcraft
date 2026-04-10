@@ -22,7 +22,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const pathname = usePathname();
-    
+
     const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -65,12 +65,23 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                     {/* Logo */}
                     <Link href="/">
                         <div className="flex flex-col justify-center h-full group">
-                            <h1 className="text-2xl font-serif font-semibold tracking-wide text-[#0f172a] group-hover:text-[#b08d57] transition-colors duration-300">
-                                {logoText}
-                            </h1>
-                            <p className="text-[10px] sm:text-xs text-[#5b6470] tracking-[0.2em] font-sans uppercase mt-0.5">
+                            {/* Brand Lockup */}
+                            <div className="inline-flex flex-col">
+                                <h1 className="text-3xl font-serif font-bold text-[#0f172a] tracking-tight group-hover:text-[#b08d57] transition-colors duration-300 leading-none pb-1">
+                                    {logoText.split(' ')[0] || "Lawcraft"}
+                                </h1>
+                                <div className="w-full h-[1px] bg-[#0f172a]/20 group-hover:bg-[#b08d57]/40 transition-colors duration-300"></div>
+                                <div className="flex justify-between w-full text-[11px] font-sans uppercase text-[#0f172a] font-bold group-hover:text-[#b08d57] transition-colors duration-300 pt-1.5 opacity-90">
+                                    {(logoText.split(' ').slice(1).join(' ') || "ADVOCATES").split('').map((char, i) => (
+                                        <span key={i}>{char === ' ' ? '\u00A0' : char}</span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Subtitle */}
+                            {/* <p className="text-[9px] sm:text-[10px] text-[#6b7280] tracking-[0.18em] font-sans uppercase mt-2.5">
                                 Advocates & Legal Consultants
-                            </p>
+                            </p> */}
                         </div>
                     </Link>
 
@@ -82,8 +93,8 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
 
                             if (isPracticeArea) {
                                 return (
-                                    <div 
-                                        key={link.label} 
+                                    <div
+                                        key={link.label}
                                         className="flex items-center h-full relative"
                                         onMouseEnter={handleMouseEnter}
                                         onMouseLeave={handleMouseLeave}
@@ -103,7 +114,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                         {/* Mega Menu Dropdown */}
                                         <div className={`absolute top-[80px] left-1/2 -translate-x-1/2 w-[950px] bg-white border border-[rgba(15,23,42,0.08)] border-t-[3px] border-t-[#b08d57] shadow-[0_16px_50px_rgba(15,23,42,0.1)] transition-all duration-300 transform origin-top rounded-b-sm flex flex-col pt-10 pb-8 px-12 z-50
                                             ${isMegaMenuOpen ? 'opacity-100 visible translate-y-0 pointer-events-auto' : 'opacity-0 invisible translate-y-2 pointer-events-none'}`}>
-                                            
+
                                             <div className="grid grid-cols-3 gap-12">
                                                 {practiceAreasData.map((category) => (
                                                     <div key={category.title} className="flex flex-col">
@@ -115,7 +126,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                                 const isItemActive = pathname === `/practice/${item.slug}`;
                                                                 return (
                                                                     <li key={item.slug}>
-                                                                        <Link 
+                                                                        <Link
                                                                             href={`/practice/${item.slug}`}
                                                                             onClick={handleMegaMenuClick}
                                                                             className={`block text-[0.95rem] font-sans transition-all duration-200 
@@ -133,7 +144,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
 
                                             {/* View All Details */}
                                             <div className="mt-10 pt-6 border-t border-[rgba(15,23,42,0.06)] text-center">
-                                                <Link 
+                                                <Link
                                                     href="/#practice-areas"
                                                     onClick={handleMegaMenuClick}
                                                     className="inline-flex items-center text-sm font-sans uppercase tracking-[0.15em] font-semibold text-[#0f172a] hover:text-[#b08d57] transition-colors"
@@ -214,7 +225,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                         >
                                             {link.label}
                                         </Link>
-                                        
+
                                         {/* Mobile Sub-menu for Practice Areas */}
                                         {isPracticeArea && (
                                             <div className="pl-4 py-4 flex flex-col gap-6 bg-stone-50 border-b border-[rgba(15,23,42,0.04)] mb-2 mt-2">
@@ -223,25 +234,25 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                         <h5 className="font-serif text-[#0f172a] text-lg mb-2">{category.title}</h5>
                                                         <ul className="space-y-2 flex flex-col pl-2 border-l border-[rgba(15,23,42,0.1)]">
                                                             {category.items.slice(0, 4).map((item) => {
-                                                                 const isItemActive = pathname === `/practice/${item.slug}`;
-                                                                 return (
+                                                                const isItemActive = pathname === `/practice/${item.slug}`;
+                                                                return (
                                                                     <li key={item.slug}>
-                                                                        <Link 
+                                                                        <Link
                                                                             onClick={() => setIsMenuOpen(false)}
-                                                                            href={`/practice/${item.slug}`} 
+                                                                            href={`/practice/${item.slug}`}
                                                                             className={`block py-1 text-sm font-sans ${isItemActive ? 'text-[#b08d57] font-medium' : 'text-[#5b6470]'}`}
                                                                         >
                                                                             {item.title}
                                                                         </Link>
                                                                     </li>
-                                                                 )
+                                                                )
                                                             })}
                                                         </ul>
                                                     </div>
                                                 ))}
-                                                <Link 
+                                                <Link
                                                     onClick={() => setIsMenuOpen(false)}
-                                                    href="/#practice-areas" 
+                                                    href="/#practice-areas"
                                                     className="inline-block mt-2 text-xs uppercase tracking-widest font-semibold text-[#b08d57]"
                                                 >
                                                     View All Services →
@@ -251,7 +262,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                     </div>
                                 );
                             })}
-                            
+
                             <div className="pt-6 mt-4 flex flex-col gap-3">
                                 <a
                                     href={`tel:${phone.replace(/\s+/g, "")}`}

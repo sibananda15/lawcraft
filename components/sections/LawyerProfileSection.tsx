@@ -28,8 +28,9 @@ const LawyerProfileSection = ({ profile }: LawyerProfileSectionProps) => {
                 */}
                 <img
                     src="/images/advocate-portrait.jpeg"
-                    alt={profile.name}
+                    alt="Senior Advocate Rajendra Panigrahi – Lawcraft Advocates"
                     className="absolute inset-0 w-full h-full object-cover object-[50%_15%] scale-[1.05]"
+                    loading="lazy"
                 />
 
                 {/* Sublte dark background gradient to give contrast and depth to the black coat */}
