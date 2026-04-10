@@ -4,9 +4,9 @@ import { locations } from "@/data/locations";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Areas We Serve | Lawcraft Advocates",
+    title: "Lawyers Across Delhi NCR | Lawcraft Advocates",
     description:
-        "Lawcraft Advocates provides expert legal representation across Delhi NCR — Noida, Delhi, Gurgaon, Ghaziabad, Greater Noida, and Faridabad.",
+        "Lawcraft Advocates serves clients across Noida, Delhi, Gurgaon, Ghaziabad, Greater Noida and Faridabad. Supreme Court advocate Rajendra Panigrahi.",
 };
 
 export default function LawyersIndexPage() {

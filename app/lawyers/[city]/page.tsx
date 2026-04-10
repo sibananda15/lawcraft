@@ -1,18 +1,45 @@
-"use client";
-
-import React, { useState } from "react";
-import Link from "next/link";
 import { locations } from "@/data/locations";
-import { useParams } from "next/navigation";
-import ConsultationModal from "@/components/ui/ConsultationModal";
-import Container from "@/components/ui/Container";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import type { Metadata } from "next";
+import ConsultationModalWrapper from "@/components/ui/ConsultationModalWrapper";
 
-export default function CityPage() {
-    const params = useParams();
-    const location = locations.find((l) => l.slug === params.city);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+export async function generateStaticParams() {
+    return locations.map((l) => ({ city: l.slug }));
+}
 
-    if (!location) return null;
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ city: string }>;
+}): Promise<Metadata> {
+    const { city } = await params;
+    const location = locations.find((l) => l.slug === city);
+    if (!location) return {};
+    return {
+        title: location.metaTitle,
+        description: location.metaDescription,
+        keywords: location.keywords,
+        openGraph: {
+            title: location.metaTitle,
+            description: location.metaDescription,
+            url: `https://lawcraftadvocates.com/lawyers/${location.slug}`,
+            type: "website",
+        },
+        alternates: {
+            canonical: `https://lawcraftadvocates.com/lawyers/${location.slug}`,
+        },
+    };
+}
+
+export default async function CityPage({
+    params,
+}: {
+    params: Promise<{ city: string }>;
+}) {
+    const { city } = await params;
+    const location = locations.find((l) => l.slug === city);
+    if (!location) notFound();
 
     return (
         <main>
@@ -35,13 +62,16 @@ export default function CityPage() {
                             postalCode: "201301",
                             addressCountry: "IN",
                         },
-                        areaServed: location.areaServed,
+                        areaServed: {
+                            "@type": "State",
+                            name: location.areaServed,
+                        },
                         founder: {
                             "@type": "Person",
                             name: "Rajendra Panigrahi",
                             jobTitle: "Senior Advocate",
                             description:
-                                "Supreme Court advocate with 20+ years experience",
+                                "Supreme Court of India advocate with 20+ years experience",
                         },
                         description: location.metaDescription,
                         priceRange: "$$",
@@ -51,45 +81,42 @@ export default function CityPage() {
             />
 
             {/* ── SECTION 1 — HERO ── */}
-            <section className="bg-[#0f1f2e] min-h-[50vh] flex items-center">
+            <section className="bg-[#0f1f2e] min-h-[55vh] flex items-center">
                 <div className="max-w-4xl mx-auto px-6 py-20 text-center w-full">
                     <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
                         Lawcraft Advocates &middot; {location.city.toUpperCase()}
                     </p>
                     <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-6" />
-                    <h1 className="font-serif text-4xl md:text-5xl text-white font-normal">
+                    <h1 className="font-serif text-4xl md:text-5xl text-white font-normal leading-tight">
                         {location.headline}
                     </h1>
-                    <p className="text-white/60 text-lg mt-4 max-w-2xl mx-auto">
+                    <p className="text-white/60 text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
                         {location.subheadline}
                     </p>
 
-                    <div className="mt-8 flex gap-4 justify-center flex-wrap">
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="bg-[#B8963E] text-white px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-[#9a7d34] transition-colors"
-                        >
-                            Schedule Consultation
-                        </button>
+                    <div className="flex gap-4 justify-center flex-wrap mt-10">
+                        <ConsultationModalWrapper
+                            cityName={location.city}
+                            label="Schedule Consultation"
+                        />
                         <a
                             href="https://wa.me/919810053761"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="border border-white/30 text-white px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-white/10 transition-all"
+                            className="border border-white/30 text-white px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-white/10 transition"
                         >
                             WhatsApp Now
                         </a>
                     </div>
 
-                    {/* Trust strip */}
-                    <div className="mt-10 pt-8 border-t border-white/10 flex justify-center gap-8 flex-wrap">
+                    <div className="mt-12 pt-8 border-t border-white/10 flex justify-center gap-8 flex-wrap">
                         {[
                             "Supreme Court Advocate",
                             "20+ Years Experience",
                             location.localCourt,
                         ].map((item) => (
                             <div key={item} className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#B8963E]" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#B8963E]" />
                                 <span className="text-white/40 text-xs tracking-wide">
                                     {item}
                                 </span>
@@ -102,7 +129,6 @@ export default function CityPage() {
             {/* ── SECTION 2 — ABOUT ── */}
             <section className="bg-[#F7F4EF] py-16 lg:py-24">
                 <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16">
-                    {/* Left */}
                     <div className="lg:col-span-2">
                         <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
                             Serving {location.city.toUpperCase()}
@@ -114,19 +140,18 @@ export default function CityPage() {
                         <p className="text-gray-600 leading-relaxed mb-4">
                             {location.description1}
                         </p>
-                        <p className="text-gray-600 leading-relaxed mb-8">
+                        <p className="text-gray-600 leading-relaxed mb-10">
                             {location.description2}
                         </p>
 
-                        {/* Court box */}
                         <div className="bg-white rounded-xl p-6 border border-gray-100">
-                            <div className="flex items-start gap-3">
-                                <span className="text-[#B8963E] text-xl">&#9878;</span>
+                            <div className="flex items-start gap-4">
+                                <span className="text-[#B8963E] text-2xl mt-0.5">&#9878;</span>
                                 <div>
-                                    <p className="font-serif text-lg text-[#0f1f2e] mb-3">
+                                    <h3 className="font-serif text-lg text-[#0f1f2e] font-normal mb-2">
                                         Courts We Appear In
-                                    </p>
-                                    <p className="text-sm text-gray-500">
+                                    </h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
                                         {location.courtNote}
                                     </p>
                                 </div>
@@ -134,22 +159,21 @@ export default function CityPage() {
                         </div>
                     </div>
 
-                    {/* Right — sticky card */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-24 bg-white rounded-2xl overflow-hidden border border-gray-100">
                             <div className="bg-[#0f1f2e] p-6">
-                                <p className="font-serif text-lg text-white">
+                                <p className="font-serif text-lg text-white font-normal">
                                     Advocate Rajendra Panigrahi
                                 </p>
                                 <div className="w-8 h-px bg-[#B8963E] mt-2 mb-3" />
                                 <div className="flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                                    <span className="text-white/50 text-xs">
+                                    <span className="text-white/50 text-xs tracking-wide">
                                         Available for consultation
                                     </span>
                                 </div>
                             </div>
-                            <div className="p-6 space-y-4">
+                            <div className="p-6 space-y-3">
                                 {[
                                     "Supreme Court of India",
                                     "Bar Council of Delhi",
@@ -158,18 +182,26 @@ export default function CityPage() {
                                 ].map((badge) => (
                                     <span
                                         key={badge}
-                                        className="block bg-[#F7F4EF] text-[#B8963E] text-xs px-3 py-1 rounded-full w-fit"
+                                        className="block bg-[#F7F4EF] text-[#B8963E] text-xs px-3 py-2 rounded-lg font-medium"
                                     >
                                         {badge}
                                     </span>
                                 ))}
-                                <div className="w-full h-px bg-gray-100 mt-4" />
-                                <button
-                                    onClick={() => setIsModalOpen(true)}
-                                    className="w-full bg-[#0f1f2e] text-white py-3 text-xs tracking-[2px] uppercase rounded-lg hover:bg-[#1a3147] transition-colors"
+
+                                <div className="w-full h-px bg-gray-100 my-4" />
+
+                                <ConsultationModalWrapper
+                                    cityName={location.city}
+                                    variant="navy"
+                                />
+                                <a
+                                    href="https://wa.me/919810053761"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full text-center border border-[#B8963E] text-[#B8963E] py-3 rounded-lg text-xs tracking-[2px] uppercase mt-3 hover:bg-[#B8963E] hover:text-white transition-colors"
                                 >
-                                    Schedule Consultation in {location.city}
-                                </button>
+                                    WhatsApp Now
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -179,33 +211,36 @@ export default function CityPage() {
             {/* ── SECTION 3 — PRACTICE AREAS ── */}
             <section className="bg-white py-16 lg:py-20">
                 <div className="max-w-6xl mx-auto px-6">
-                    <p className="text-[#B8963E] text-xs tracking-[4px] uppercase text-center">
-                        Practice Areas
-                    </p>
-                    <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-5" />
-                    <h2 className="font-serif text-3xl text-[#0f1f2e] text-center font-normal mb-3">
-                        How We Help Clients in {location.city}
-                    </h2>
-                    <p className="text-gray-400 text-sm text-center mb-12">
-                        Expert representation across all major legal matters.
-                    </p>
+                    <div className="text-center mb-14">
+                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                            Practice Areas
+                        </p>
+                        <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-5" />
+                        <h2 className="font-serif text-3xl text-[#0f1f2e] font-normal">
+                            How We Help Clients in {location.city}
+                        </h2>
+                        <p className="text-gray-400 text-sm mt-3">
+                            Expert representation across all major legal matters in{" "}
+                            {location.city} and surrounding areas.
+                        </p>
+                    </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        {location.practiceHighlights.map((ph) => (
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+                        {location.practiceHighlights.map((item) => (
                             <Link
-                                key={ph.title}
-                                href={ph.link}
-                                className="border border-gray-100 rounded-xl p-6 hover:border-[#B8963E] transition group"
+                                key={item.title}
+                                href={item.link}
+                                className="group border border-gray-100 rounded-xl p-6 hover:border-[#B8963E] transition block"
                             >
                                 <span className="text-[#B8963E] text-xl block mb-3">
                                     &#9878;
                                 </span>
-                                <span className="font-serif text-lg text-[#0f1f2e] group-hover:text-[#B8963E] transition-colors block">
-                                    {ph.title}
-                                </span>
-                                <span className="text-xs text-gray-400 mt-2 group-hover:text-[#B8963E] transition-colors block">
+                                <h3 className="font-serif text-lg text-[#0f1f2e] group-hover:text-[#B8963E] transition-colors font-normal">
+                                    {item.title}
+                                </h3>
+                                <p className="text-xs text-gray-400 mt-2 group-hover:text-[#B8963E] transition-colors">
                                     Learn more &rarr;
-                                </span>
+                                </p>
                             </Link>
                         ))}
                     </div>
@@ -213,47 +248,43 @@ export default function CityPage() {
             </section>
 
             {/* ── SECTION 5 — BOTTOM CTA ── */}
-            <section className="bg-[#0f1f2e] py-16">
+            <section className="bg-[#0f1f2e] py-20">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
                         Get In Touch
                     </p>
                     <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-6" />
-                    <h2 className="font-serif text-3xl text-white font-normal">
+                    <h2 className="font-serif text-3xl md:text-4xl text-white font-normal">
                         Require Legal Assistance in {location.city}?
                     </h2>
+                    <p className="text-white/40 text-sm mt-4">
+                        Direct access to senior counsel — no intermediaries, no delays.
+                    </p>
                     <a
                         href="tel:+919810053761"
-                        className="font-serif text-2xl text-[#B8963E] mt-4 block hover:underline"
+                        className="block font-serif text-2xl text-[#B8963E] mt-6 hover:text-[#d4a84e] transition-colors"
                     >
                         +91 9810053761
                     </a>
-                    <p className="text-white/40 text-xs mt-2">
-                        Available Mon&ndash;Sat, 10AM&ndash;7PM
+                    <p className="text-white/30 text-xs mt-2">
+                        Available Mon&ndash;Sat, 10:00 AM &ndash; 7:00 PM
                     </p>
-                    <div className="mt-8 flex gap-4 justify-center flex-wrap">
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="bg-[#B8963E] text-white px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-[#9a7d34] transition-colors"
-                        >
-                            Schedule Consultation
-                        </button>
+                    <div className="flex gap-4 justify-center flex-wrap mt-8">
+                        <ConsultationModalWrapper
+                            cityName={location.city}
+                            label="Schedule Consultation"
+                        />
                         <a
                             href="https://wa.me/919810053761"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="border border-white/30 text-white px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-white/10 transition-all"
+                            className="border border-white/30 text-white px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-white/10 transition"
                         >
                             WhatsApp Now
                         </a>
                     </div>
                 </div>
             </section>
-
-            <ConsultationModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-            />
         </main>
     );
 }
