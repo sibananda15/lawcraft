@@ -16,9 +16,9 @@ const WhyChooseSection = ({
     items,
 }: WhyChooseSectionProps) => {
     return (
-        <section className="py-14 bg-gray-50">
+        <section className="py-16 lg:py-24 bg-gray-50">
             <Container>
-                <h2 className="mb-8">
+                <h2 className="font-serif text-3xl font-normal text-gray-900 mb-8">
                     {heading}
                 </h2>
 

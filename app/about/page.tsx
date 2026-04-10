@@ -11,7 +11,7 @@ export default function AboutPage() {
 
             <main>
                 {/* 1. Hero Section */}
-                <section className="bg-stone-50 py-20 border-b border-stone-200">
+                <section className="bg-stone-50 py-16 lg:py-24 border-b border-stone-200">
                     <Container>
                         <div className="flex flex-col md:flex-row items-center gap-12">
                             <div className="md:w-1/2">
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* 2. Why Lawcraft Advocates */}
-                <section className="py-20 bg-white">
+                <section className="py-16 lg:py-24 bg-warm-white">
                     <Container>
                         <div className="max-w-4xl mx-auto text-center">
                             <h2 className="font-serif text-3xl font-bold text-gray-900 mb-8">
@@ -55,7 +55,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* 3. Our Values */}
-                <section className="py-20 bg-stone-50">
+                <section className="py-16 lg:py-24 bg-stone-50">
                     <Container>
                         <h2 className="font-serif text-3xl font-bold text-gray-900 mb-12 text-center">
                             Our Values
@@ -90,7 +90,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* 4. Our Approach */}
-                <section className="py-20 bg-white">
+                <section className="py-16 lg:py-24 bg-warm-white">
                     <Container>
                         <div className="flex flex-col md:flex-row-reverse items-center gap-12">
                             <div className="md:w-1/2">
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* 5. Geographic Reach */}
-                <section className="py-20 bg-stone-50 text-center">
+                <section className="py-16 lg:py-24 bg-stone-50 text-center">
                     <Container>
                         <div className="max-w-4xl mx-auto">
                             <h2 className="font-serif text-3xl font-bold text-gray-900 mb-8">
@@ -142,7 +142,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* 6. Closing Section (Soft CTA) */}
-                <section className="py-24 bg-white border-t border-stone-100">
+                <section className="py-16 lg:py-24 bg-warm-white border-t border-stone-100">
                     <Container>
                         <div className="max-w-4xl mx-auto text-center">
                             <h2 className="font-serif text-3xl font-bold text-gray-900 mb-6">

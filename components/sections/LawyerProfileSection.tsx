@@ -17,7 +17,7 @@ interface LawyerProfileSectionProps {
 
 const LawyerProfileSection = ({ profile }: LawyerProfileSectionProps) => {
     return (
-        <section className="relative bg-white border-y border-gray-100 flex flex-col md:block">
+        <section className="relative bg-warm-white border-y border-gray-100 flex flex-col md:block">
             
             {/* Right Column: Edge-to-Edge Full Height Editorial Image */}
             <div className="order-1 md:order-2 md:absolute md:top-0 md:bottom-0 md:right-0 md:w-[50%] lg:w-[55%] relative w-full h-[500px] sm:h-[600px] md:h-auto overflow-hidden bg-stone-900">
@@ -37,10 +37,10 @@ const LawyerProfileSection = ({ profile }: LawyerProfileSectionProps) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-900/10 to-transparent mix-blend-multiply"></div>
 
                 {/* Left side soft gradient integrating the image flawlessly into the stark white text column */}
-                <div className="absolute inset-y-0 left-0 w-32 md:w-64 lg:w-96 bg-gradient-to-r from-white via-white/60 to-transparent hidden md:block"></div>
+                <div className="absolute inset-y-0 left-0 w-32 md:w-64 lg:w-96 bg-gradient-to-r from-warm-white via-white/60 to-transparent hidden md:block"></div>
                 
                 {/* Mobile top-text integration fade */}
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent md:hidden"></div>
+                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-warm-white to-transparent md:hidden"></div>
             </div>
 
             <Container className="relative z-10 order-2 md:order-1">

@@ -60,7 +60,7 @@ const Footer = ({
                                 href={`https://wa.me/${whatsapp}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center px-8 py-4 border border-[rgba(255,255,255,0.2)] text-white font-sans text-[14px] font-semibold uppercase tracking-[0.15em] hover:border-[#C5A46D] hover:text-[#C5A46D] transition-all duration-300 rounded-sm"
+                                className="inline-flex items-center justify-center px-8 py-4 border border-[rgba(255,255,255,0.2)] text-white font-sans text-[14px] font-semibold uppercase tracking-[0.15em] hover:border-[#C5A46D] hover:text-gold transition-all duration-300 rounded-sm"
                             >
                                 WhatsApp Now
                             </a>
@@ -88,7 +88,7 @@ const Footer = ({
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Open Lawcraft Advocates location in Google Maps"
-                                className="group flex items-start text-[#a1b0c0] text-[16px] leading-[1.8] hover:text-[#C5A46D] hover:cursor-pointer transition-colors duration-300"
+                                className="group flex items-start text-[#a1b0c0] text-[16px] leading-[1.8] hover:text-gold hover:cursor-pointer transition-colors duration-300"
                             >
                                 <svg className="w-5 h-5 mr-3 mt-1 shrink-0 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -156,7 +156,7 @@ const Footer = ({
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
-                                        className="text-[16px] font-sans text-[#a1b0c0] hover:text-[#C5A46D] transition-colors duration-300 block leading-[1.6]"
+                                        className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]"
                                     >
                                         {link.label}
                                     </a>
@@ -172,17 +172,17 @@ const Footer = ({
                         </h4>
                         <ul className="space-y-4">
                             <li>
-                                <a href="/privacy-policy" className="text-[16px] font-sans text-[#a1b0c0] hover:text-[#C5A46D] transition-colors duration-300 block leading-[1.6]">
+                                <a href="/privacy-policy" className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]">
                                     Privacy Policy
                                 </a>
                             </li>
                             <li>
-                                <a href="/terms-of-service" className="text-[16px] font-sans text-[#a1b0c0] hover:text-[#C5A46D] transition-colors duration-300 block leading-[1.6]">
+                                <a href="/terms-of-service" className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]">
                                     Terms of Service
                                 </a>
                             </li>
                             <li>
-                                <a href="/disclaimer" className="text-[16px] font-sans text-[#a1b0c0] hover:text-[#C5A46D] transition-colors duration-300 block leading-[1.6]">
+                                <a href="/disclaimer" className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]">
                                     Disclaimer
                                 </a>
                             </li>

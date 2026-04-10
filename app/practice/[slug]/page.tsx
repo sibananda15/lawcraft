@@ -38,7 +38,7 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
     const relatedItems = categoryData?.items.filter(i => i.slug !== item.slug).slice(0, 4) || [];
 
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-warm-white">
             {/* Hero Section */}
             <section className="bg-gradient-to-b from-[#f8f6f2] to-white border-b border-[rgba(15,23,42,0.08)] pt-6 pb-12 md:pt-10 md:pb-16 lg:pt-12 lg:pb-20 relative">
                 {/* Subtle top gradient accent */}
@@ -49,9 +49,9 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
                         {/* Breadcrumb & Navigation */}
                         <div className="mb-8 md:mb-12">
                             <div className="flex flex-wrap items-center text-xs sm:text-sm font-sans text-gray-400 mb-4 tracking-wide">
-                                <Link href="/" className="hover:text-[#b08d57] transition-colors">Home</Link>
+                                <Link href="/" className="hover:text-gold transition-colors">Home</Link>
                                 <span className="mx-2 sm:mx-3 text-gray-300">/</span>
-                                <Link href="/#practice-areas" className="hover:text-[#b08d57] transition-colors">Practice Areas</Link>
+                                <Link href="/#practice-areas" className="hover:text-gold transition-colors">Practice Areas</Link>
                                 <span className="mx-2 sm:mx-3 text-gray-300">/</span>
                                 <span className="text-gray-500">{category}</span>
                                 <span className="mx-2 sm:mx-3 text-gray-300">/</span>
@@ -66,9 +66,10 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
 
                         {/* Hero Content */}
                         <div className="max-w-4xl">
-                            <span className="block text-xs md:text-sm font-sans font-semibold tracking-[0.2em] text-[#b08d57] uppercase mb-3">
+                            <span className="eyebrow text-gold block mb-3">
                                 Practice Area <span className="mx-3 opacity-40">|</span> {category}
                             </span>
+                            <span className="block w-12 h-px bg-gold mb-6" />
                             <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-normal text-[#0f172a] mb-6 leading-[1.1]">
                                 {item.title}
                             </h1>
@@ -82,7 +83,7 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
             </section>
 
             {/* Content Section */}
-            <section className="py-12 md:py-16 lg:py-20">
+            <section className="py-16 lg:py-24">
                 <Container>
                     <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24">
                         {/* Main Content */}
@@ -119,7 +120,7 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
                                                 href={`/practice/${relatedItem.slug}`}
                                                 className="group flex flex-col p-8 bg-stone-50 hover:bg-[#f8f6f2] border border-[rgba(15,23,42,0.06)] hover:border-[#b08d57]/30 hover:shadow-sm transition-all duration-300 rounded-sm"
                                             >
-                                                <span className="font-serif text-xl text-[#0f172a] mb-3 group-hover:text-[#b08d57] transition-colors">{relatedItem.title}</span>
+                                                <span className="font-serif text-xl text-[#0f172a] mb-3 group-hover:text-gold transition-colors">{relatedItem.title}</span>
                                                 <span className="font-sans text-[0.95rem] text-[#5b6470] line-clamp-2 leading-relaxed">{relatedItem.shortDescription}</span>
                                             </Link>
                                         ))}
@@ -150,7 +151,7 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
                                             href={`https://wa.me/${siteConfig.whatsapp}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center w-full bg-white border border-[#0f172a]/20 text-[#0f172a] font-sans font-medium tracking-widest uppercase text-sm py-4 lg:py-5 px-6 hover:border-[#b08d57] hover:text-[#b08d57] transition-colors duration-300 rounded-sm"
+                                            className="inline-flex items-center justify-center w-full bg-white border border-[#0f172a]/20 text-[#0f172a] font-sans font-medium tracking-widest uppercase text-sm py-4 lg:py-5 px-6 hover:border-[#b08d57] hover:text-gold transition-colors duration-300 rounded-sm"
                                         >
                                             WhatsApp Now
                                         </a>
@@ -161,7 +162,7 @@ export default async function PracticeAreaDetail({ params }: { params: Promise<{
                                     <span className="block text-sm font-sans text-gray-500 uppercase tracking-wider mb-2">Or Call Us At</span>
                                     <a 
                                         href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} 
-                                        className="inline-block font-serif text-2xl text-[#0f172a] hover:text-[#b08d57] transition-colors"
+                                        className="inline-block font-serif text-2xl text-[#0f172a] hover:text-gold transition-colors"
                                     >
                                         {siteConfig.phone}
                                     </a>

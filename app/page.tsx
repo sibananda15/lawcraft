@@ -1,6 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import { siteConfig } from "@/data/siteConfig";
 import PracticeAreasSection from "@/components/sections/PracticeAreasSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import LawyerProfileSection from "@/components/sections/LawyerProfileSection";
 import { lawyerProfile } from "@/data/lawyerProfile";
 import WhyChoose from "@/components/sections/WhyChoose";
@@ -19,6 +20,8 @@ export default function HomePage() {
       <WhyChoose />
 
       <PracticeAreasSection />
+
+      <TestimonialsSection />
 
       <ContactSection
         heading="Contact Advocate"

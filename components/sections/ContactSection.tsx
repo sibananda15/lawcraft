@@ -9,15 +9,16 @@ interface ContactSectionProps {
 
 const ContactSection = ({ heading = "Contact an Advocate", phone, whatsapp, address }: ContactSectionProps) => {
     return (
-        <section className="bg-[#F8F6F2] py-[80px] border-t border-[rgba(11,28,46,0.08)]">
+        <section className="bg-[#F8F6F2] py-16 lg:py-24 border-t border-[rgba(11,28,46,0.08)]">
             <Container>
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
                     
                     {/* Left Column: Editorial Content */}
                     <div className="lg:w-1/2 flex flex-col pt-4">
-                        <span className="block text-[12px] md:text-[14px] font-sans font-semibold tracking-[0.2em] text-[#C5A46D] uppercase mb-5">
+                        <p className="eyebrow text-gold mb-0">
                             Take Action
-                        </span>
+                        </p>
+                        <div className="w-12 h-px bg-gold mt-3 mb-6" />
                         <h2 className="font-serif text-[28px] md:text-[32px] lg:text-[36px] font-medium text-[#0B1C2E] mb-6 leading-[1.2]">
                             {heading}
                         </h2>

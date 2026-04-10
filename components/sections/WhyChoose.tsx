@@ -46,13 +46,14 @@ const FEATURES = [
 
 export default function WhyChoose() {
     return (
-        <section className="bg-white py-[80px] border-b border-[rgba(11,28,46,0.08)]">
+        <section className="bg-warm-white py-16 lg:py-24 border-b border-[rgba(11,28,46,0.08)]">
             <Container>
                 {/* Header */}
                 <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
-                    <span className="block text-[12px] md:text-[14px] font-sans font-semibold tracking-[0.2em] text-[#C5A46D] uppercase mb-4">
-                        The Firm's Advantage
-                    </span>
+                    <p className="eyebrow text-gold">
+                        The Firm&apos;s Advantage
+                    </p>
+                    <div className="w-12 h-px bg-gold mx-auto mt-3 mb-6" />
                     <h2 className="font-serif text-[28px] md:text-[32px] lg:text-[36px] font-medium text-[#0B1C2E] mb-6 leading-[1.2]">
                         Why Clients Choose This Practice
                     </h2>

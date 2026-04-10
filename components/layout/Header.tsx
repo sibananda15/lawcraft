@@ -21,6 +21,7 @@ interface HeaderProps {
 const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
 
     const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -48,7 +49,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
 
     useEffect(() => {
         setIsMenuOpen(false);
-        handleMegaMenuClick(); // ensures cleanup of timers when pathname changes
+        handleMegaMenuClick();
     }, [pathname]);
 
     useEffect(() => {
@@ -58,30 +59,39 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
         };
     }, []);
 
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 80);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
+    // Dynamic color helpers
+    const textColor = scrolled ? "text-white" : "text-[#0f172a]";
+    const hoverColor = "hover:text-gold";
+
     return (
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[rgba(15,23,42,0.08)] shadow-sm transition-all duration-300">
+        <header className={`sticky top-0 z-50 transition-all duration-300 ${
+            scrolled
+                ? "bg-navy/95 backdrop-blur-md border-b border-gold/30 shadow-lg"
+                : "bg-white/95 backdrop-blur-md border-b border-[rgba(15,23,42,0.08)] shadow-sm"
+        }`}>
             <Container>
-                <div className="h-20 flex items-center justify-between">
+                <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "py-3" : "py-5"}`}>
                     {/* Logo */}
                     <Link href="/">
                         <div className="flex flex-col justify-center h-full group">
-                            {/* Brand Lockup */}
                             <div className="inline-flex flex-col">
-                                <h1 className="text-3xl font-serif font-bold text-[#0f172a] tracking-tight group-hover:text-[#b08d57] transition-colors duration-300 leading-none pb-1">
+                                <h1 className={`text-3xl font-serif font-bold tracking-tight group-hover:text-gold transition-colors duration-300 leading-none pb-1 ${textColor}`}>
                                     {logoText.split(' ')[0] || "Lawcraft"}
                                 </h1>
-                                <div className="w-full h-[1px] bg-[#0f172a]/20 group-hover:bg-[#b08d57]/40 transition-colors duration-300"></div>
-                                <div className="flex justify-between w-full text-[11px] font-sans uppercase text-[#0f172a] font-bold group-hover:text-[#b08d57] transition-colors duration-300 pt-1.5 opacity-90">
+                                <div className={`w-full h-[1px] transition-colors duration-300 ${scrolled ? "bg-white/20 group-hover:bg-[#b08d57]/40" : "bg-[#0f172a]/20 group-hover:bg-[#b08d57]/40"}`}></div>
+                                <div className={`flex justify-between w-full text-[11px] font-sans uppercase font-bold group-hover:text-gold transition-colors duration-300 pt-1.5 opacity-90 ${textColor}`}>
                                     {(logoText.split(' ').slice(1).join(' ') || "ADVOCATES").split('').map((char, i) => (
                                         <span key={i}>{char === ' ' ? '\u00A0' : char}</span>
                                     ))}
                                 </div>
                             </div>
-
-                            {/* Subtitle */}
-                            {/* <p className="text-[9px] sm:text-[10px] text-[#6b7280] tracking-[0.18em] font-sans uppercase mt-2.5">
-                                Advocates & Legal Consultants
-                            </p> */}
                         </div>
                     </Link>
 
@@ -102,8 +112,8 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                         <Link
                                             href={link.href}
                                             onClick={handleMegaMenuClick}
-                                            className={`text-[0.9rem] uppercase tracking-wider font-sans font-medium transition-all duration-300 relative py-2 
-                                                ${isActive ? 'text-[#b08d57]' : 'text-[#0f172a] hover:text-[#b08d57]'}`}
+                                            className={`text-[0.9rem] uppercase tracking-wider font-sans font-medium transition-all duration-300 relative py-2
+                                                ${isActive ? 'text-[#b08d57]' : `${textColor} ${hoverColor}`}`}
                                         >
                                             {link.label}
                                             <span className={`ml-1.5 opacity-60 text-[10px] transition-transform duration-300 inline-block ${isMegaMenuOpen ? '-rotate-180' : ''}`}>▼</span>
@@ -112,7 +122,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                         </Link>
 
                                         {/* Mega Menu Dropdown */}
-                                        <div className={`absolute top-[80px] left-1/2 -translate-x-1/2 w-[950px] bg-white border border-[rgba(15,23,42,0.08)] border-t-[3px] border-t-[#b08d57] shadow-[0_16px_50px_rgba(15,23,42,0.1)] transition-all duration-300 transform origin-top rounded-b-sm flex flex-col pt-10 pb-8 px-12 z-50
+                                        <div className={`absolute top-full left-1/2 -translate-x-1/2 w-[950px] bg-white border border-[rgba(15,23,42,0.08)] border-t-[3px] border-t-[#b08d57] shadow-[0_16px_50px_rgba(15,23,42,0.1)] transition-all duration-300 transform origin-top rounded-b-sm flex flex-col pt-10 pb-8 px-12 z-50
                                             ${isMegaMenuOpen ? 'opacity-100 visible translate-y-0 pointer-events-auto' : 'opacity-0 invisible translate-y-2 pointer-events-none'}`}>
 
                                             <div className="grid grid-cols-3 gap-12">
@@ -129,8 +139,8 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                                         <Link
                                                                             href={`/practice/${item.slug}`}
                                                                             onClick={handleMegaMenuClick}
-                                                                            className={`block text-[0.95rem] font-sans transition-all duration-200 
-                                                                                ${isItemActive ? 'text-[#b08d57] font-semibold translate-x-1' : 'text-[#5b6470] hover:text-[#b08d57] hover:translate-x-1'}`}
+                                                                            className={`block text-[0.95rem] font-sans transition-all duration-200
+                                                                                ${isItemActive ? 'text-[#b08d57] font-semibold translate-x-1' : 'text-[#5b6470] hover:text-gold hover:translate-x-1'}`}
                                                                         >
                                                                             {item.title}
                                                                         </Link>
@@ -147,7 +157,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                 <Link
                                                     href="/#practice-areas"
                                                     onClick={handleMegaMenuClick}
-                                                    className="inline-flex items-center text-sm font-sans uppercase tracking-[0.15em] font-semibold text-[#0f172a] hover:text-[#b08d57] transition-colors"
+                                                    className="inline-flex items-center text-sm font-sans uppercase tracking-[0.15em] font-semibold text-[#0f172a] hover:text-gold transition-colors"
                                                 >
                                                     View All Practice Areas <span className="ml-2 text-lg">→</span>
                                                 </Link>
@@ -161,8 +171,8 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                 <div key={link.label} className="group flex items-center h-full relative">
                                     <Link
                                         href={link.href}
-                                        className={`text-[0.9rem] uppercase tracking-wider font-sans font-medium transition-all duration-300 py-2 
-                                            ${isActive ? 'text-[#b08d57]' : 'text-[#0f172a] hover:text-[#b08d57]'}`}
+                                        className={`text-[0.9rem] uppercase tracking-wider font-sans font-medium transition-all duration-300 py-2
+                                            ${isActive ? 'text-[#b08d57]' : `${textColor} ${hoverColor}`}`}
                                     >
                                         {link.label}
                                         <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57] transition-all duration-300 origin-left
@@ -180,7 +190,11 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                 href={`https://wa.me/${whatsapp}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-[#0f172a] text-white px-7 py-3 text-xs font-semibold font-sans hover:bg-[#b08d57] transition-all duration-300 uppercase tracking-widest rounded-sm shadow-[0_4px_10px_rgba(15,23,42,0.1)] hover:shadow-[0_6px_15px_rgba(15,23,42,0.15)]"
+                                className={`px-7 py-3 text-xs font-semibold font-sans transition-all duration-300 uppercase tracking-widest rounded-sm ${
+                                    scrolled
+                                        ? "bg-gold text-white hover:bg-gold/90 shadow-md"
+                                        : "bg-[#0f172a] text-white hover:bg-[#b08d57] shadow-[0_4px_10px_rgba(15,23,42,0.1)] hover:shadow-[0_6px_15px_rgba(15,23,42,0.15)]"
+                                }`}
                             >
                                 WhatsApp Now
                             </a>
@@ -189,7 +203,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden p-2 text-[#0f172a] hover:text-[#b08d57] transition-colors"
+                        className={`lg:hidden p-2 ${textColor} ${hoverColor} transition-colors`}
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -208,7 +222,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
 
             {/* Mobile Menu Dropdown */}
             {isMenuOpen && (
-                <div className="lg:hidden absolute top-20 left-0 w-full bg-white border-b border-[rgba(15,23,42,0.08)] shadow-lg overflow-y-auto max-h-[calc(100vh-80px)]">
+                <div className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-[rgba(15,23,42,0.08)] shadow-lg overflow-y-auto max-h-[calc(100vh-80px)]">
                     <Container>
                         <nav className="flex flex-col py-6 space-y-2">
                             {navLinks.map((link) => {

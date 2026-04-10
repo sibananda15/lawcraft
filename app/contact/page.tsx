@@ -11,7 +11,7 @@ export default function ContactPage() {
 
             <main>
                 {/* 1. Hero Section */}
-                <section className="bg-stone-50 py-16 md:py-20 text-center border-b border-stone-200">
+                <section className="bg-stone-50 py-16 lg:py-24 text-center border-b border-stone-200">
                     <Container>
                         <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                             Contact Lawcraft Advocates
@@ -23,7 +23,7 @@ export default function ContactPage() {
                 </section>
 
                 {/* 2. Primary Action Section (Card Layout - Simplified) */}
-                <section className="py-12 bg-white -mt-8 relative z-10">
+                <section className="py-16 lg:py-24 bg-warm-white -mt-8 relative z-10">
                     <Container>
                         <div className="flex justify-center max-w-4xl mx-auto">
                             {/* Talk to Us Card - Centered */}
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 </section>
 
                 {/* 3. Contact Information (Structured Blocks) */}
-                <section className="py-16 bg-white border-t border-gray-100">
+                <section className="py-16 lg:py-24 bg-warm-white border-t border-gray-100">
                     <Container>
                         <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
                             <div className="md:col-span-1">
@@ -86,7 +86,7 @@ export default function ContactPage() {
                 <hr className="border-gray-100" />
 
                 {/* 4. Consultation Process (Short Steps) */}
-                <section className="py-16 bg-white">
+                <section className="py-16 lg:py-24 bg-warm-white">
                     <Container>
                         <div className="max-w-4xl mx-auto">
                             <h2 className="font-serif text-2xl font-bold text-gray-900 mb-8">
@@ -110,7 +110,7 @@ export default function ContactPage() {
                 </section>
 
                 {/* 5. Geographic Coverage (Inline List) */}
-                <section className="py-16 bg-stone-50">
+                <section className="py-16 lg:py-24 bg-stone-50">
                     <Container>
                         <div className="max-w-4xl mx-auto">
                             <h2 className="font-serif text-2xl font-bold text-gray-900 mb-6">
@@ -135,7 +135,7 @@ export default function ContactPage() {
                 </section>
 
                 {/* Closing Note (Simplified) */}
-                <section className="py-16 bg-stone-100 text-center border-t border-stone-200">
+                <section className="py-16 lg:py-24 bg-stone-100 text-center border-t border-stone-200">
                     <Container>
                         <p className="text-gray-600 max-w-xl mx-auto mb-6">
                             We encourage responsible communication. If you require experienced legal guidance, we are here to assist.

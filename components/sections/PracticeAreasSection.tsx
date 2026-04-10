@@ -5,13 +5,14 @@ import { practiceAreasData } from "../../data/practiceAreas";
 
 const PracticeAreasSection = () => {
     return (
-        <section className="py-[80px] bg-[#F8F6F2]" id="practice-areas">
+        <section className="py-16 lg:py-24 bg-[#F8F6F2]" id="practice-areas">
             <Container>
                 {/* Section Heading */}
                 <div className="max-w-3xl mx-auto text-center mb-16 px-4">
-                    <span className="block text-[12px] md:text-[14px] font-sans font-semibold tracking-[0.2em] text-[#C5A46D] uppercase mb-4">
+                    <p className="eyebrow text-gold">
                         Our Expertise
-                    </span>
+                    </p>
+                    <div className="w-12 h-px bg-gold mx-auto mt-3 mb-6" />
                     <h2 className="font-serif text-[28px] md:text-[32px] lg:text-[36px] font-medium text-[#0B1C2E] mb-6 leading-[1.2]">
                         Practice Areas
                     </h2>
