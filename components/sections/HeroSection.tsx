@@ -61,7 +61,7 @@ const HeroSection = ({
     const casesCounter = useCounter(500, 2000);
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col lg:flex-row">
+        <section className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden">
             {/* LEFT 55% */}
             <div className="w-full lg:w-[55%] flex items-center px-6 md:px-16 lg:px-20 xl:px-28 py-20 lg:py-0 bg-warm-white">
                 <motion.div
@@ -173,7 +173,7 @@ const HeroSection = ({
 
             {/* RIGHT 45% — full-height portrait */}
             <motion.div
-                className="w-full lg:w-[45%] relative min-h-[60vh] lg:min-h-screen"
+                className="w-full lg:w-[45%] relative min-h-screen overflow-hidden isolate"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -182,9 +182,11 @@ const HeroSection = ({
                 <img
                     src="/images/advocate-portrait.jpeg"
                     alt="Portrait of Senior Advocate Rajendra Panigrahi"
-                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: "center 10%" }}
                     fetchPriority="high"
                 />
+                <div className="absolute inset-0 bg-[#0f1f2e]/5 pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent pointer-events-none" />
             </motion.div>
             <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
