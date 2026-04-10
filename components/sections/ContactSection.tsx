@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Container from "../ui/Container";
+import ConsultationModal from "@/components/ui/ConsultationModal";
 
 interface ContactSectionProps {
     heading?: string; 
@@ -8,7 +12,9 @@ interface ContactSectionProps {
 }
 
 const ContactSection = ({ heading = "Contact an Advocate", phone, whatsapp, address }: ContactSectionProps) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
+        <>
         <section className="bg-[#F8F6F2] py-16 lg:py-24 border-t border-[rgba(11,28,46,0.08)]">
             <Container>
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
@@ -55,12 +61,12 @@ const ContactSection = ({ heading = "Contact an Advocate", phone, whatsapp, addr
                             </p>
                             
                             <div className="flex flex-col gap-4 mb-10">
-                                <a
-                                    href={`tel:${phone.replace(/\s+/g, "")}`}
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
                                     className="inline-flex items-center justify-center w-full px-8 py-4 bg-[#0B1C2E] text-white font-sans text-[14px] font-semibold tracking-[0.15em] uppercase hover:bg-[#C5A46D] transition-colors duration-300 rounded-sm shadow-[0_4px_14px_rgba(11,28,46,0.15)]"
                                 >
                                     Schedule Consultation
-                                </a>
+                                </button>
 
                                 <a
                                     href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`}
@@ -89,6 +95,8 @@ const ContactSection = ({ heading = "Contact an Advocate", phone, whatsapp, addr
                 </div>
             </Container>
         </section>
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </>
     );
 };
 

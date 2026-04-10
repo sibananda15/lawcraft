@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { lawyerProfile } from "@/data/lawyerProfile";
+import ConsultationModal from "@/components/ui/ConsultationModal";
 
 interface HeroAction {
     label: string;
@@ -56,6 +57,7 @@ const HeroSection = ({
     primaryAction,
     secondaryAction,
 }: HeroSectionProps) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const yearsCounter = useCounter(20);
     const casesCounter = useCounter(500, 2000);
 
@@ -85,12 +87,12 @@ const HeroSection = ({
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                        <a
-                            href={primaryAction.href}
+                        <button
+                            onClick={() => setIsModalOpen(true)}
                             className="inline-flex justify-center items-center px-6 py-3 bg-navy text-white text-sm font-semibold tracking-widest uppercase transition-colors duration-300 hover:bg-navy/90"
                         >
                             {primaryAction.label}
-                        </a>
+                        </button>
                         <a
                             href={secondaryAction.href}
                             target="_blank"
@@ -146,6 +148,7 @@ const HeroSection = ({
                 {/* Subtle overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent pointer-events-none" />
             </div>
+            <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </section>
     );
 };
