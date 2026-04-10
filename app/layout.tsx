@@ -90,13 +90,24 @@ export default function RootLayout({
           ]}
         />
         <div className="py-2 bg-navy text-warm-white text-xs tracking-wide text-center">
-          Enrolled Advocate
-          <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
-          Bar Council of Delhi
-          <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
-          Supreme Court of India
-          <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
-          20+ Years Active Practice
+          {/* Full version — tablet and up */}
+          <span className="hidden sm:inline">
+            Enrolled Advocate
+            <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
+            Bar Council of Delhi
+            <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
+            Supreme Court of India
+            <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
+            20+ Years Active Practice
+          </span>
+          {/* Short version — mobile */}
+          <span className="sm:hidden">
+            Bar Council of Delhi
+            <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
+            Supreme Court
+            <span className="inline-block w-1 h-1 rounded-full bg-gold mx-2 align-middle" />
+            20+ Years
+          </span>
         </div>
         <main className="flex-grow">
           {children}

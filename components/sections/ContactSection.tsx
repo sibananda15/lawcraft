@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Container from "../ui/Container";
 import ConsultationModal from "@/components/ui/ConsultationModal";
 
@@ -15,7 +16,13 @@ const ContactSection = ({ heading = "Contact an Advocate", phone, whatsapp, addr
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <>
-        <section className="bg-[#F8F6F2] py-16 lg:py-24 border-t border-[rgba(11,28,46,0.08)]">
+        <motion.section
+            className="bg-[#F8F6F2] py-16 lg:py-24 border-t border-[rgba(11,28,46,0.08)]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+        >
             <Container>
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
                     
@@ -94,7 +101,7 @@ const ContactSection = ({ heading = "Contact an Advocate", phone, whatsapp, addr
                     
                 </div>
             </Container>
-        </section>
+        </motion.section>
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </>
     );

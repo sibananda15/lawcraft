@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import Link from "next/link";
 import ConsultationModal from "@/components/ui/ConsultationModal";
 
-interface Link {
+interface FooterLink {
     label: string;
     href: string;
 }
@@ -14,201 +15,195 @@ interface FooterProps {
     phone: string;
     email?: string;
     whatsapp?: string;
-    practiceLinks: Link[]; // Kept for interface compatibility
+    practiceLinks: FooterLink[];
 }
 
-const Footer = ({
-    firmName,
-    address,
-    phone,
-    email,
-    whatsapp,
-}: FooterProps) => {
+const PRACTICE_LINKS = [
+    { label: "Criminal Defence", href: "/practice/trial-criminal-defense" },
+    { label: "Family & Matrimonial", href: "/practice/family-matrimonial-law" },
+    { label: "Property Litigation", href: "/practice/property-real-estate-law" },
+    { label: "Corporate & Commercial", href: "/practice/company-formation-structuring" },
+    { label: "Civil Litigation", href: "/practice/civil-litigation-appeals" },
+    { label: "Anticipatory Bail", href: "/practice/bail-anticipatory-bail" },
+];
+
+const QUICK_LINKS = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Practice Areas", href: "/#practice-areas" },
+    { label: "Contact", href: "/contact" },
+];
+
+const LEGAL_LINKS = [
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Disclaimer", href: "/disclaimer" },
+];
+
+function FooterColumnLabel({ children }: { children: React.ReactNode }) {
+    return (
+        <>
+            <p className="text-[#B8963E] text-[10px] tracking-[4px] uppercase mb-5">
+                {children}
+            </p>
+            <div className="w-6 h-px bg-[#B8963E] mb-5" />
+        </>
+    );
+}
+
+function FooterLinkList({ links }: { links: FooterLink[] }) {
+    return (
+        <ul className="space-y-3">
+            {links.map((link) => (
+                <li key={link.label}>
+                    <Link
+                        href={link.href}
+                        className="text-white/50 text-sm hover:text-[#B8963E] transition-colors"
+                    >
+                        {link.label}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+const Footer = ({ phone, address }: FooterProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const currentYear = new Date().getFullYear();
 
-    // Specific Practice Areas requested
-    const topPracticeAreas = [
-        { label: "Criminal Defence", href: "/practice/criminal-defense" },
-        { label: "Family & Matrimonial", href: "/practice/family-law" },
-        { label: "Property Litigation", href: "/practice/property-real-estate-disputes" },
-        { label: "Corporate & Commercial", href: "/practice/corporate-commercial-law" },
-    ];
-
-    // Splitting address string natively into two lines if it contains a comma
-    const addressParts = address.split(', ');
-
     return (
-        <footer className="bg-[#0B1C2E] text-slate-300 pt-[80px] pb-8 border-t-[3px] border-t-[#C5A46D]">
-            <div className="container mx-auto px-6 max-w-7xl">
-
-                {/* Authority CTA Row (Moved to top of footer for hierarchy) */}
-                <div className="border-b border-[rgba(255,255,255,0.06)] pb-[80px] mb-[80px] flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                    <div className="text-left max-w-2xl">
-                        <h2 className="text-white font-serif text-[28px] md:text-[32px] lg:text-[36px] mb-4">
+        <>
+            {/* ── PRE-FOOTER CTA BAND ── */}
+            <section className="bg-[#0f1f2e] py-16">
+                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+                    <div className="max-w-xl">
+                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                            Take Action
+                        </p>
+                        <div className="w-8 h-px bg-[#B8963E] mt-3 mb-5" />
+                        <h2 className="font-serif text-3xl text-white font-normal">
                             Speak Directly With an Advocate
                         </h2>
-                        <p className="text-[#a1b0c0] text-[16px] leading-[1.7]">
-                            Secure expert legal counsel tailored to your specific situation. We provide clear, strategic representation to protect your interests and drive results.
+                        <p className="text-white/50 text-sm mt-3">
+                            Direct access to senior counsel — no intermediaries, no delays.
                         </p>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0">
+                    <div className="flex flex-col gap-3 w-full md:w-auto shrink-0">
                         <button
                             onClick={() => setIsModalOpen(true)}
-                            className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#0B1C2E] font-sans text-[14px] font-semibold uppercase tracking-[0.15em] hover:bg-[#C5A46D] hover:text-white transition-all duration-300 rounded-sm"
+                            className="inline-flex items-center justify-center px-8 py-3.5 bg-[#B8963E] text-white text-xs tracking-[2px] uppercase rounded hover:bg-[#9a7d34] transition-colors"
                         >
                             Schedule Consultation
                         </button>
-                        {whatsapp && (
-                            <a
-                                href={`https://wa.me/${whatsapp}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center px-8 py-4 border border-[rgba(255,255,255,0.2)] text-white font-sans text-[14px] font-semibold uppercase tracking-[0.15em] hover:border-[#C5A46D] hover:text-gold transition-all duration-300 rounded-sm"
-                            >
-                                WhatsApp Now
-                            </a>
-                        )}
+                        <a
+                            href="https://wa.me/919810053761"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-8 py-3.5 border border-white/30 text-white text-xs tracking-[2px] uppercase rounded hover:border-white hover:bg-white/10 transition-all"
+                        >
+                            WhatsApp Now
+                        </a>
                     </div>
                 </div>
+            </section>
 
-                {/* Main 3-Column Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-20">
+            {/* Gold divider */}
+            <div className="w-full h-px bg-[#B8963E]/20" />
 
-                    {/* Left: Firm Info (Spans 5 columns) */}
-                    <div className="md:col-span-12 lg:col-span-5 flex flex-col space-y-8">
+            {/* ── MAIN FOOTER ── */}
+            <footer className="bg-[#0a1628] py-16">
+                <div className="max-w-7xl mx-auto px-6">
+                    {/* 4-column grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[35%_20%_20%_25%] gap-12 lg:gap-8">
+                        {/* Column 1 — Brand */}
                         <div>
-                            <h3 className="text-[28px] md:text-[32px] font-serif text-white tracking-wide mb-2">
-                                {firmName}
-                            </h3>
-                            <p className="text-[12px] text-[#C5A46D] font-semibold tracking-[0.2em] uppercase">
-                                Advocates & Legal Consultants
+                            <p className="font-serif text-2xl text-white font-normal leading-none">
+                                Lawcraft
                             </p>
-                        </div>
+                            <p className="text-[#B8963E] text-[10px] tracking-[4px] mt-1 uppercase">
+                                Advocates
+                            </p>
+                            <div className="w-8 h-px bg-[#B8963E] mt-4 mb-5" />
+                            <p className="text-white/40 text-sm leading-relaxed italic max-w-xs">
+                                &ldquo;Committed to strategic advocacy and unwavering representation in the pursuit of justice.&rdquo;
+                            </p>
+                            <p className="text-white/30 text-xs mt-6">
+                                Enrolled Advocate · Bar Council of Delhi
+                            </p>
 
-                        <div className="flex flex-col space-y-6 lg:max-w-sm">
-                            <a
-                                href="https://www.google.com/maps/place/Law+craft+Advocates/@28.5808296,77.3793651,17z"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Open Lawcraft Advocates location in Google Maps"
-                                className="group flex items-start text-[#a1b0c0] text-[16px] leading-[1.8] hover:text-gold hover:cursor-pointer transition-colors duration-300"
-                            >
-                                <svg className="w-5 h-5 mr-3 mt-1 shrink-0 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <address className="not-italic flex flex-col group-hover:underline underline-offset-4 decoration-[1px]">
-                                    {addressParts.map((part, index) => (
-                                        <span key={index}>{part}{index < addressParts.length - 1 ? ',' : ''}</span>
-                                    ))}
-                                </address>
-                            </a>
-
-                            {/* Premium Map Preview Card */}
-                            <div className="flex flex-col space-y-3">
-                                <div className="w-full shadow-lg rounded-[12px] overflow-hidden border border-[rgba(255,255,255,0.06)] bg-[#0B1C2E]/50">
-                                    <iframe
-                                        src="https://www.google.com/maps?q=28.5808296,77.3793651&z=15&output=embed"
-                                        width="100%"
-                                        height="250"
-                                        style={{ border: 0 }}
-                                        allowFullScreen={false}
-                                        loading="lazy"
-                                    ></iframe>
-                                </div>
-
-                                {/* Get Directions Button */}
-                                <a
-                                    href="https://www.google.com/maps/dir/?api=1&destination=28.5808296,77.3793651"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center text-[#C5A46D] hover:text-white font-sans text-[13px] font-semibold tracking-wide transition-colors uppercase group w-fit"
-                                >
-                                    Get Directions 
-                                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            <div className="mt-4 space-y-1">
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-3.5 h-3.5 text-[#B8963E] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
-                                </a>
-                            </div>
-
-                            <div className="flex flex-col space-y-2 mt-2">
-                                <span className="text-[11px] text-[#71869d] uppercase tracking-[0.2em] font-semibold">Direct Line</span>
-                                <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-[24px] font-serif text-[#C5A46D] hover:text-white transition-colors">
-                                    {phone}
-                                </a>
-                                {email && (
-                                    <a href={`mailto:${email}`} className="text-[16px] text-[#a1b0c0] hover:text-white transition-colors mt-2 block">
-                                        {email}
+                                    <span className="text-white/50 text-xs">{address}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-3.5 h-3.5 text-[#B8963E] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <a href={`tel:${phone.replace(/\s/g, "")}`} className="text-white/50 text-xs hover:text-[#B8963E] transition-colors">
+                                        {phone}
                                     </a>
-                                )}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-3.5 h-3.5 text-[#B8963E] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <a href="mailto:contact@lawcraft.in" className="text-white/50 text-xs hover:text-[#B8963E] transition-colors">
+                                        contact@lawcraft.in
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <blockquote className="text-[16px] text-[#a1b0c0] italic border-l-[3px] border-[#C5A46D] pl-5 py-2 leading-[1.7] mt-4">
-                            "Committed to strategic advocacy and unwavering representation in the pursuit of justice."
-                        </blockquote>
+                        {/* Column 2 — Practice Areas */}
+                        <div>
+                            <FooterColumnLabel>Practice Areas</FooterColumnLabel>
+                            <FooterLinkList links={PRACTICE_LINKS} />
+                        </div>
+
+                        {/* Column 3 — Quick Links */}
+                        <div>
+                            <FooterColumnLabel>Quick Links</FooterColumnLabel>
+                            <FooterLinkList links={QUICK_LINKS} />
+                        </div>
+
+                        {/* Column 4 — Legal */}
+                        <div>
+                            <FooterColumnLabel>Legal</FooterColumnLabel>
+                            <FooterLinkList links={LEGAL_LINKS} />
+
+                            <div className="mt-8">
+                                <span className="border border-[#B8963E]/30 rounded-full px-3 py-1.5 inline-flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                                    <span className="text-white/40 text-[10px] tracking-wide">
+                                        Available for consultation
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Middle: Top Practice Areas (Spans 4 columns) */}
-                    <div className="md:col-span-6 lg:col-span-4 lg:pl-8">
-                        <h4 className="text-[12px] font-semibold text-[#C5A46D] uppercase tracking-[0.2em] mb-8">
-                            Key Practice Areas
-                        </h4>
-                        <ul className="space-y-4">
-                            {topPracticeAreas.map((link) => (
-                                <li key={link.label}>
-                                    <a
-                                        href={link.href}
-                                        className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]"
-                                    >
-                                        {link.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Right: Legal Links (Spans 3 columns) */}
-                    <div className="md:col-span-6 lg:col-span-3">
-                        <h4 className="text-[12px] font-semibold text-[#C5A46D] uppercase tracking-[0.2em] mb-8">
-                            Legal
-                        </h4>
-                        <ul className="space-y-4">
-                            <li>
-                                <a href="/privacy-policy" className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/terms-of-service" className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]">
-                                    Terms of Service
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/disclaimer" className="text-[16px] font-sans text-[#a1b0c0] hover:text-gold transition-colors duration-300 block leading-[1.6]">
-                                    Disclaimer
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Bottom Section: Disclaimer & Copyright */}
-                <div className="border-t border-[rgba(255,255,255,0.06)] pt-10">
-                    <p className="text-[11px] text-[#71869d] mb-6 leading-[1.8] text-justify max-w-none">
-                        <strong>Disclaimer:</strong> The user wishes to gain more information about Lawcraft Advocates for his/her own information and use. The information provided herein is for general guidance only and does not contain legal advice. Lawcraft Advocates is not liable for any consequence of any action taken by the user relying on material/information provided on this website. Receipt of information from this site does not create an advocate-client relationship.
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <p className="text-[12px] text-[#71869d] font-sans tracking-wide">
-                            &copy; {currentYear} {firmName}. All rights reserved.
+                    {/* ── BOTTOM BAR ── */}
+                    <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-white/20 text-xs">
+                            &copy; {currentYear} Lawcraft Advocates. All rights reserved.
+                        </p>
+                        <span className="text-[#B8963E]/40 text-xs select-none hidden sm:block">
+                            · &nbsp; · &nbsp; ·
+                        </span>
+                        <p className="text-white/20 text-xs italic">
+                            Designed with precision. Built for trust.
                         </p>
                     </div>
                 </div>
+            </footer>
 
-            </div>
             <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        </footer>
+        </>
     );
 };
 

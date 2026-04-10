@@ -1,11 +1,29 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Container from "../ui/Container";
 import Link from "next/link";
 import { practiceAreasData } from "../../data/practiceAreas";
 
+const sectionReveal = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+};
+
 const PracticeAreasSection = () => {
+    const [openPanel, setOpenPanel] = useState<string>(practiceAreasData[0]?.title || "");
+
     return (
-        <section className="py-16 lg:py-24 bg-[#F8F6F2]" id="practice-areas">
+        <motion.section
+            className="py-16 lg:py-24 bg-[#F8F6F2]"
+            id="practice-areas"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={sectionReveal}
+        >
             <Container>
                 {/* Section Heading */}
                 <div className="max-w-3xl mx-auto text-center mb-16 px-4">
@@ -22,12 +40,16 @@ const PracticeAreasSection = () => {
                     </p>
                 </div>
 
-                {/* 3-Column Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-                    {practiceAreasData.map((category) => (
-                        <div 
-                            key={category.title} 
+                {/* ── Desktop: 3-Column Grid ── */}
+                <div className="hidden lg:grid grid-cols-3 gap-8 relative z-10">
+                    {practiceAreasData.map((category, i) => (
+                        <motion.div
+                            key={category.title}
                             className="group flex flex-col bg-white border border-[rgba(11,28,46,0.06)] border-t-[3px] border-t-transparent hover:border-t-[#C5A46D] px-8 py-10 transition-all duration-500 shadow-[0_4px_16px_rgba(11,28,46,0.03)] hover:shadow-[0_16px_40px_rgba(11,28,46,0.06)] hover:-translate-y-1 rounded-sm h-full"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.1 }}
                         >
                             <h3 className="font-serif text-[20px] md:text-[22px] font-medium text-[#0B1C2E] mb-6 group-hover:text-[#C5A46D] transition-colors duration-300">
                                 {category.title}
@@ -50,11 +72,46 @@ const PracticeAreasSection = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
+
+                {/* ── Mobile: Accordion ── */}
+                <div className="lg:hidden space-y-0">
+                    {practiceAreasData.map((category) => {
+                        const isOpen = openPanel === category.title;
+                        return (
+                            <div key={category.title}>
+                                <button
+                                    onClick={() => setOpenPanel(isOpen ? "" : category.title)}
+                                    className="w-full flex items-center justify-between py-4 border-b border-gray-200"
+                                >
+                                    <span className={`font-serif text-lg transition-colors ${isOpen ? "text-[#B8963E]" : "text-[#0f1f2e]"}`}>
+                                        {category.title}
+                                    </span>
+                                    <span className={`text-[#B8963E] text-xl leading-none transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+                                        +
+                                    </span>
+                                </button>
+                                <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[800px]" : "max-h-0"}`}>
+                                    <div className="py-2">
+                                        {category.items.map((item) => (
+                                            <Link
+                                                key={item.slug}
+                                                href={`/practice/${item.slug}`}
+                                                className="block py-2.5 pl-4 text-sm text-gray-600 border-l-2 border-transparent hover:border-[#B8963E] hover:text-[#B8963E] transition-all"
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </Container>
-        </section>
+        </motion.section>
     );
 };
 

@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 import Container from "../ui/Container";
 
 const FEATURES = [
@@ -44,9 +47,21 @@ const FEATURES = [
     },
 ];
 
+const sectionReveal = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+};
+
 export default function WhyChoose() {
     return (
-        <section className="bg-warm-white py-16 lg:py-24 border-b border-[rgba(11,28,46,0.08)]">
+        <motion.section
+            className="bg-warm-white py-16 lg:py-24 border-b border-[rgba(11,28,46,0.08)]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={sectionReveal}
+        >
             <Container>
                 {/* Header */}
                 <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
@@ -63,12 +78,16 @@ export default function WhyChoose() {
                     </p>
                 </div>
 
-                {/* Grid */}
+                {/* Grid — staggered cards */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-                    {FEATURES.map((item) => (
-                        <div
+                    {FEATURES.map((item, i) => (
+                        <motion.div
                             key={item.title}
                             className="group p-10 bg-white border border-[rgba(11,28,46,0.04)] border-t-[3px] border-t-transparent hover:border-t-[#C5A46D] shadow-[0_8px_30px_rgba(11,28,46,0.03)] hover:shadow-[0_20px_60px_rgba(11,28,46,0.06)] transform hover:-translate-y-1 transition-all duration-500 flex flex-col items-start rounded-sm h-full"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.1 }}
                         >
                             <div className="mb-6 text-[#C5A46D] opacity-80 group-hover:opacity-100 group-hover:scale-110 transform transition-all duration-500">
                                 {item.icon}
@@ -80,10 +99,10 @@ export default function WhyChoose() {
                             <p className="font-sans text-[16px] text-[#5B6470] leading-[1.7]">
                                 {item.description}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </Container>
-        </section>
+        </motion.section>
     );
 }

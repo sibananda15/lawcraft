@@ -5,6 +5,7 @@ import Container from "../ui/Container";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { practiceAreasData } from "@/data/practiceAreas";
+import ConsultationModal from "@/components/ui/ConsultationModal";
 
 interface NavLink {
     label: string;
@@ -22,6 +23,8 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const pathname = usePathname();
 
     const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -66,11 +69,30 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    // Dynamic color helpers
+    // Lock body scroll when mobile drawer is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => { document.body.style.overflow = ""; };
+    }, [isMenuOpen]);
+
+    // Close drawer on Escape
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && isMenuOpen) setIsMenuOpen(false);
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [isMenuOpen]);
+
     const textColor = scrolled ? "text-white" : "text-[#0f172a]";
     const hoverColor = "hover:text-gold";
 
     return (
+        <>
         <header className={`sticky top-0 z-50 transition-all duration-300 ${
             scrolled
                 ? "bg-navy/95 backdrop-blur-md border-b border-gold/30 shadow-lg"
@@ -152,7 +174,6 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                 ))}
                                             </div>
 
-                                            {/* View All Details */}
                                             <div className="mt-10 pt-6 border-t border-[rgba(15,23,42,0.06)] text-center">
                                                 <Link
                                                     href="/#practice-areas"
@@ -184,7 +205,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                     </nav>
 
                     {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center gap-4">
+                    <div className="hidden lg:flex items-center gap-4">
                         {whatsapp && (
                             <a
                                 href={`https://wa.me/${whatsapp}`}
@@ -201,103 +222,138 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                         )}
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        className={`lg:hidden p-2 ${textColor} ${hoverColor} transition-colors`}
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        {isMenuOpen ? (
-                            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        ) : (
-                            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        )}
-                    </button>
+                    {/* Mobile: phone + hamburger */}
+                    <div className="lg:hidden flex items-center gap-4">
+                        <a
+                            href={`tel:${phone.replace(/\s/g, "")}`}
+                            className={`hidden sm:block text-xs transition-colors ${scrolled ? "text-white/60" : "text-gray-400"}`}
+                        >
+                            +91 98100 53761
+                        </a>
+                        <button
+                            className="w-8 h-8 flex flex-col justify-center gap-1.5"
+                            onClick={() => setIsMenuOpen(true)}
+                            aria-label="Open menu"
+                        >
+                            <span className={`w-full h-px transition-colors ${scrolled ? "bg-white" : "bg-[#0f172a]"}`} />
+                            <span className={`w-full h-px transition-colors ${scrolled ? "bg-white" : "bg-[#0f172a]"}`} />
+                            <span className={`w-full h-px transition-colors ${scrolled ? "bg-white" : "bg-[#0f172a]"}`} />
+                        </button>
+                    </div>
                 </div>
             </Container>
-
-            {/* Mobile Menu Dropdown */}
-            {isMenuOpen && (
-                <div className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-[rgba(15,23,42,0.08)] shadow-lg overflow-y-auto max-h-[calc(100vh-80px)]">
-                    <Container>
-                        <nav className="flex flex-col py-6 space-y-2">
-                            {navLinks.map((link) => {
-                                const isPracticeArea = link.label === "Practice Areas";
-                                const isActive = pathname === link.href || (isPracticeArea && pathname.startsWith('/practice'));
-
-                                return (
-                                    <div key={link.label} className="flex flex-col">
-                                        <Link
-                                            href={link.href}
-                                            className={`text-[1.05rem] font-sans uppercase tracking-widest py-3 border-b border-[rgba(15,23,42,0.04)]
-                                                ${isActive ? 'text-[#b08d57] font-semibold' : 'text-[#0f172a]'}`}
-                                            onClick={() => !isPracticeArea && setIsMenuOpen(false)}
-                                        >
-                                            {link.label}
-                                        </Link>
-
-                                        {/* Mobile Sub-menu for Practice Areas */}
-                                        {isPracticeArea && (
-                                            <div className="pl-4 py-4 flex flex-col gap-6 bg-stone-50 border-b border-[rgba(15,23,42,0.04)] mb-2 mt-2">
-                                                {practiceAreasData.map(category => (
-                                                    <div key={category.title}>
-                                                        <h5 className="font-serif text-[#0f172a] text-lg mb-2">{category.title}</h5>
-                                                        <ul className="space-y-2 flex flex-col pl-2 border-l border-[rgba(15,23,42,0.1)]">
-                                                            {category.items.slice(0, 4).map((item) => {
-                                                                const isItemActive = pathname === `/practice/${item.slug}`;
-                                                                return (
-                                                                    <li key={item.slug}>
-                                                                        <Link
-                                                                            onClick={() => setIsMenuOpen(false)}
-                                                                            href={`/practice/${item.slug}`}
-                                                                            className={`block py-1 text-sm font-sans ${isItemActive ? 'text-[#b08d57] font-medium' : 'text-[#5b6470]'}`}
-                                                                        >
-                                                                            {item.title}
-                                                                        </Link>
-                                                                    </li>
-                                                                )
-                                                            })}
-                                                        </ul>
-                                                    </div>
-                                                ))}
-                                                <Link
-                                                    onClick={() => setIsMenuOpen(false)}
-                                                    href="/#practice-areas"
-                                                    className="inline-block mt-2 text-xs uppercase tracking-widest font-semibold text-[#b08d57]"
-                                                >
-                                                    View All Services →
-                                                </Link>
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-
-                            <div className="pt-6 mt-4 flex flex-col gap-3">
-                                <a
-                                    href={`tel:${phone.replace(/\s+/g, "")}`}
-                                    className="flex items-center justify-center w-full px-4 py-3 border border-[#0f172a]/20 text-[#0f172a] font-sans uppercase tracking-widest text-sm font-semibold rounded-sm"
-                                >
-                                    Call Now
-                                </a>
-                                {whatsapp && (
-                                    <a
-                                        href={`https://wa.me/${whatsapp}`}
-                                        className="flex items-center justify-center w-full px-4 py-3 bg-[#0f172a] text-white font-sans uppercase tracking-widest text-sm font-semibold rounded-sm shadow-md"
-                                    >
-                                        WhatsApp
-                                    </a>
-                                )}
-                            </div>
-                        </nav>
-                    </Container>
-                </div>
-            )}
         </header>
+
+        {/* ── MOBILE DRAWER ── */}
+        {/* Overlay */}
+        <div
+            className={`fixed inset-0 bg-black/50 z-[60] lg:hidden transition-opacity duration-300 ${
+                isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+        />
+
+        {/* Drawer panel */}
+        <div
+            className={`fixed top-0 right-0 h-screen w-full max-w-sm bg-[#0f1f2e] z-[70] lg:hidden transform transition-transform duration-300 ease-out flex flex-col ${
+                isMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+        >
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <div>
+                    <p className="font-serif text-xl text-white font-normal leading-none">Lawcraft</p>
+                    <p className="text-[#B8963E] text-[9px] tracking-[4px] mt-0.5 uppercase">Advocates</p>
+                </div>
+                <button
+                    onClick={() => setIsMenuOpen(false)}
+                    className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                    aria-label="Close menu"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex-1 overflow-y-auto px-6 py-6">
+                {navLinks.map((link) => {
+                    const isPracticeArea = link.label === "Practice Areas";
+
+                    if (isPracticeArea) {
+                        return (
+                            <div key={link.label}>
+                                <button
+                                    onClick={() => setMobileAccordion(mobileAccordion === "practice" ? null : "practice")}
+                                    className="w-full flex items-center justify-between font-serif text-2xl text-white font-normal py-4 border-b border-white/10"
+                                >
+                                    {link.label}
+                                    <span className={`text-[#B8963E] text-lg transition-transform duration-300 ${mobileAccordion === "practice" ? "rotate-45" : ""}`}>
+                                        +
+                                    </span>
+                                </button>
+                                <div className={`overflow-hidden transition-all duration-300 ${mobileAccordion === "practice" ? "max-h-[600px]" : "max-h-0"}`}>
+                                    <div className="py-3 space-y-1">
+                                        {practiceAreasData.map((category) => (
+                                            <div key={category.title} className="mb-3">
+                                                <p className="text-[#B8963E] text-xs tracking-[2px] uppercase mb-2 pl-4">
+                                                    {category.title}
+                                                </p>
+                                                {category.items.slice(0, 4).map((item) => (
+                                                    <Link
+                                                        key={item.slug}
+                                                        href={`/practice/${item.slug}`}
+                                                        onClick={() => setIsMenuOpen(false)}
+                                                        className="block text-white/60 text-sm py-2 pl-4 hover:text-[#B8963E] transition-colors"
+                                                    >
+                                                        {item.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+
+                    return (
+                        <Link
+                            key={link.label}
+                            href={link.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block font-serif text-2xl text-white font-normal py-4 border-b border-white/10"
+                        >
+                            {link.label}
+                        </Link>
+                    );
+                })}
+            </nav>
+
+            {/* Drawer bottom CTAs */}
+            <div className="px-6 pb-8 space-y-3">
+                <button
+                    onClick={() => { setIsMenuOpen(false); setIsModalOpen(true); }}
+                    className="w-full bg-[#B8963E] text-white py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-[#9a7d34] transition-colors"
+                >
+                    Schedule Consultation
+                </button>
+                {whatsapp && (
+                    <a
+                        href={`https://wa.me/${whatsapp}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full block text-center border border-white/30 text-white py-3.5 text-xs tracking-[2px] uppercase rounded hover:border-white hover:bg-white/10 transition-all"
+                    >
+                        WhatsApp Now
+                    </a>
+                )}
+            </div>
+        </div>
+
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </>
     );
 };
 

@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 const testimonials = [
     {
@@ -30,9 +33,21 @@ function StarIcon() {
     );
 }
 
+const sectionReveal = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+};
+
 const TestimonialsSection = () => {
     return (
-        <section className="bg-navy py-16 lg:py-24">
+        <motion.section
+            className="bg-navy py-16 lg:py-24"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={sectionReveal}
+        >
             <div className="max-w-7xl mx-auto px-6">
                 {/* Eyebrow */}
                 <p className="eyebrow text-center mb-0">Client Testimonials</p>
@@ -42,39 +57,36 @@ const TestimonialsSection = () => {
                     Trusted by Clients Across Delhi NCR
                 </h2>
 
-                {/* Cards grid */}
+                {/* Cards grid — staggered */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {testimonials.map((t) => (
-                        <div
+                    {testimonials.map((t, i) => (
+                        <motion.div
                             key={t.matter}
                             className="bg-white/[0.04] border border-white/10 rounded-sm px-8 py-10 flex flex-col"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.15 }}
                         >
-                            {/* Gold opening quote */}
                             <span className="font-serif text-6xl leading-none text-gold select-none mb-4">
                                 &ldquo;
                             </span>
-
-                            {/* Testimonial text */}
                             <p className="italic text-warm-white/90 text-base leading-relaxed mb-6 flex-grow">
                                 {t.quote}
                             </p>
-
-                            {/* Stars */}
                             <div className="flex gap-1 mb-4">
-                                {Array.from({ length: 5 }).map((_, i) => (
-                                    <StarIcon key={i} />
+                                {Array.from({ length: 5 }).map((_, j) => (
+                                    <StarIcon key={j} />
                                 ))}
                             </div>
-
-                            {/* Matter type label */}
                             <span className="text-xs uppercase tracking-widest text-gold/70">
                                 {t.matter}
                             </span>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 };
 
