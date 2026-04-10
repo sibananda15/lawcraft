@@ -2,7 +2,7 @@ import { getAllPracticeItems } from "@/data/practiceAreas";
 import { locations } from "@/data/locations";
 import type { MetadataRoute } from "next";
 
-const BASE = "https://www.lawcraftadvocates.com";
+const BASE = "https://lawcraftadvocates.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const practicePages = getAllPracticeItems().map((item) => ({

@@ -30,10 +30,11 @@ export default function AboutPage() {
                             <div className="md:w-1/2 relative bg-gray-200 rounded-sm overflow-hidden h-[400px] w-full shadow-lg">
                                 {/* Generic Professional Visual */}
                                 <Image
-                                    src="/images/about/office-interior.png" // Ensure this path matches where we copied the image
+                                    src="/images/about/office-interior.png"
                                     alt="Lawcraft Advocates Office"
                                     fill
                                     className="object-cover"
+                                    loading="lazy"
                                 />
                             </div>
                         </div>

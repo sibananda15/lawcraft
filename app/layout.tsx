@@ -17,7 +17,7 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-heading",
 });
 
-const siteUrl = "https://www.lawcraftadvocates.com";
+const siteUrl = "https://lawcraftadvocates.com";
 
 export const metadata: Metadata = {
   title: "Lawcraft Advocates | Criminal & Civil Lawyer Noida | Rajendra Panigrahi",

@@ -106,9 +106,9 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                     <Link href="/">
                         <div className="flex flex-col justify-center h-full group">
                             <div className="inline-flex flex-col">
-                                <h1 className={`text-3xl font-serif font-bold tracking-tight group-hover:text-gold transition-colors duration-300 leading-none pb-1 ${textColor}`}>
+                                <span className={`text-3xl font-serif font-bold tracking-tight group-hover:text-gold transition-colors duration-300 leading-none pb-1 block ${textColor}`}>
                                     {logoText.split(' ')[0] || "Lawcraft"}
-                                </h1>
+                                </span>
                                 <div className={`w-full h-[1px] transition-colors duration-300 ${scrolled ? "bg-white/20 group-hover:bg-[#b08d57]/40" : "bg-[#0f172a]/20 group-hover:bg-[#b08d57]/40"}`}></div>
                                 <div className={`flex justify-between w-full text-[11px] font-sans uppercase font-bold group-hover:text-gold transition-colors duration-300 pt-1.5 opacity-90 ${textColor}`}>
                                     {(logoText.split(' ').slice(1).join(' ') || "ADVOCATES").split('').map((char, i) => (

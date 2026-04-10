@@ -183,6 +183,7 @@ const HeroSection = ({
                     src="/images/advocate-portrait.jpeg"
                     alt="Portrait of Senior Advocate Rajendra Panigrahi"
                     className="absolute inset-0 w-full h-full object-cover object-top"
+                    fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent pointer-events-none" />
             </motion.div>

@@ -81,7 +81,7 @@ export default async function CityPage({
             />
 
             {/* ── SECTION 1 — HERO ── */}
-            <section className="bg-[#0f1f2e] min-h-[55vh] flex items-center">
+            <section className="bg-[#0f1f2e] flex items-center">
                 <div className="max-w-4xl mx-auto px-6 py-20 text-center w-full">
                     <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
                         Lawcraft Advocates &middot; {location.city.toUpperCase()}

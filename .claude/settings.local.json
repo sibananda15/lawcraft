@@ -4,7 +4,8 @@
       "Bash(npm run:*)",
       "Bash(xargs grep:*)",
       "Bash(npm install:*)",
-      "Bash(ls C:/Users/siban/Desktop/lawcraft/lawcraft/app/sitemap*)"
+      "Bash(ls C:/Users/siban/Desktop/lawcraft/lawcraft/app/sitemap*)",
+      "Bash(curl -s http://localhost:3000/lawyers/noida)"
     ]
   }
 }
