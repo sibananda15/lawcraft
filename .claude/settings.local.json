@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm run:*)",
       "Bash(xargs grep:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(ls C:/Users/siban/Desktop/lawcraft/lawcraft/app/sitemap*)"
     ]
   }
 }

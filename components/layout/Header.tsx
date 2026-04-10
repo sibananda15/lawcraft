@@ -5,6 +5,7 @@ import Container from "../ui/Container";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { practiceAreasData } from "@/data/practiceAreas";
+import { locations } from "@/data/locations";
 import ConsultationModal from "@/components/ui/ConsultationModal";
 
 interface NavLink {
@@ -24,6 +25,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
+    const [isLocationsOpen, setIsLocationsOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const pathname = usePathname();
 
@@ -121,7 +123,46 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                     <nav className="hidden lg:flex items-center h-full gap-8">
                         {navLinks.map((link) => {
                             const isPracticeArea = link.label === "Practice Areas";
-                            const isActive = pathname === link.href || (isPracticeArea && pathname.startsWith('/practice'));
+                            const isLocations = link.label === "Locations";
+                            const isActive = pathname === link.href || (isPracticeArea && pathname.startsWith('/practice')) || (isLocations && pathname.startsWith('/lawyers'));
+
+                            if (isLocations) {
+                                return (
+                                    <div
+                                        key={link.label}
+                                        className="flex items-center h-full relative"
+                                        onMouseEnter={() => setIsLocationsOpen(true)}
+                                        onMouseLeave={() => setIsLocationsOpen(false)}
+                                    >
+                                        <Link
+                                            href={link.href}
+                                            onClick={() => setIsLocationsOpen(false)}
+                                            className={`text-[0.9rem] uppercase tracking-wider font-sans font-medium transition-all duration-300 relative py-2
+                                                ${isActive ? 'text-[#b08d57]' : `${textColor} ${hoverColor}`}`}
+                                        >
+                                            {link.label}
+                                            <span className={`ml-1.5 opacity-60 text-[10px] transition-transform duration-300 inline-block ${isLocationsOpen ? '-rotate-180' : ''}`}>▼</span>
+                                            <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57] transition-all duration-300 origin-left
+                                                ${isActive ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`}></span>
+                                        </Link>
+                                        <div className={`absolute top-full left-1/2 -translate-x-1/2 w-56 bg-white border border-[rgba(15,23,42,0.08)] border-t-[3px] border-t-[#b08d57] shadow-[0_16px_50px_rgba(15,23,42,0.1)] transition-all duration-300 transform origin-top rounded-b-sm py-4 px-2 z-50
+                                            ${isLocationsOpen ? 'opacity-100 visible translate-y-0 pointer-events-auto' : 'opacity-0 invisible translate-y-2 pointer-events-none'}`}>
+                                            {locations.map((loc) => (
+                                                <Link
+                                                    key={loc.slug}
+                                                    href={`/lawyers/${loc.slug}`}
+                                                    onClick={() => setIsLocationsOpen(false)}
+                                                    className={`block px-4 py-2.5 text-sm font-sans rounded transition-colors ${
+                                                        pathname === `/lawyers/${loc.slug}` ? 'text-[#b08d57] font-medium' : 'text-[#5b6470] hover:text-gold hover:bg-gray-50'
+                                                    }`}
+                                                >
+                                                    {loc.city}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            }
 
                             if (isPracticeArea) {
                                 return (
@@ -280,6 +321,37 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
             <nav className="flex-1 overflow-y-auto px-6 py-6">
                 {navLinks.map((link) => {
                     const isPracticeArea = link.label === "Practice Areas";
+                    const isLocations = link.label === "Locations";
+
+                    if (isLocations) {
+                        return (
+                            <div key={link.label}>
+                                <button
+                                    onClick={() => setMobileAccordion(mobileAccordion === "locations" ? null : "locations")}
+                                    className="w-full flex items-center justify-between font-serif text-2xl text-white font-normal py-4 border-b border-white/10"
+                                >
+                                    {link.label}
+                                    <span className={`text-[#B8963E] text-lg transition-transform duration-300 ${mobileAccordion === "locations" ? "rotate-45" : ""}`}>
+                                        +
+                                    </span>
+                                </button>
+                                <div className={`overflow-hidden transition-all duration-300 ${mobileAccordion === "locations" ? "max-h-[400px]" : "max-h-0"}`}>
+                                    <div className="py-3">
+                                        {locations.map((loc) => (
+                                            <Link
+                                                key={loc.slug}
+                                                href={`/lawyers/${loc.slug}`}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="block text-white/60 text-sm py-2 pl-4 hover:text-[#B8963E] transition-colors"
+                                            >
+                                                {loc.city}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
 
                     if (isPracticeArea) {
                         return (

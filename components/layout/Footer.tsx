@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import ConsultationModal from "@/components/ui/ConsultationModal";
+import { locations } from "@/data/locations";
 
 interface FooterLink {
     label: string;
@@ -155,6 +156,28 @@ const Footer = ({ phone, address }: FooterProps) => {
                                     <a href="mailto:contact@lawcraft.in" className="text-white/50 text-xs hover:text-[#B8963E] transition-colors">
                                         contact@lawcraft.in
                                     </a>
+                                </div>
+                            </div>
+
+                            {/* Serving locations */}
+                            <div className="mt-5">
+                                <p className="text-[#B8963E] text-[10px] tracking-[3px] uppercase mb-2">
+                                    Serving Delhi NCR
+                                </p>
+                                <div className="flex flex-wrap gap-x-1.5 gap-y-1">
+                                    {locations.map((loc, i) => (
+                                        <span key={loc.slug} className="inline-flex items-center">
+                                            <Link
+                                                href={`/lawyers/${loc.slug}`}
+                                                className="text-white/40 text-xs hover:text-[#B8963E] transition-colors"
+                                            >
+                                                {loc.city}
+                                            </Link>
+                                            {i < locations.length - 1 && (
+                                                <span className="text-white/20 text-xs ml-1.5">&middot;</span>
+                                            )}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
