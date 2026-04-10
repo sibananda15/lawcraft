@@ -163,7 +163,7 @@ export default async function CityPage({
                         <div className="sticky top-24 bg-white rounded-2xl overflow-hidden border border-gray-100">
                             <div className="bg-[#0f1f2e] p-6">
                                 <p className="font-serif text-lg text-white font-normal">
-                                    Advocate Rajendra Panigrahi
+                                    Mr. Rajendra Panigrahi
                                 </p>
                                 <div className="w-8 h-px bg-[#B8963E] mt-2 mb-3" />
                                 <div className="flex items-center gap-2">

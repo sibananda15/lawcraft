@@ -4,9 +4,9 @@ import Container from "@/components/ui/Container";
 import ConsultationModalWrapper from "@/components/ui/ConsultationModalWrapper";
 
 export const metadata: Metadata = {
-    title: "About Advocate Rajendra Panigrahi | Lawcraft Advocates",
+    title: "About Mr. Rajendra Panigrahi | Lawcraft Advocates",
     description:
-        "Meet Advocate Rajendra Panigrahi — Supreme Court enrolled advocate with 20+ years of distinguished practice in criminal defence, property disputes, and corporate law across Delhi NCR.",
+        "Meet Mr. Rajendra Panigrahi — Supreme Court enrolled advocate with 20+ years of distinguished practice in criminal defence, property disputes, and corporate law across Delhi NCR.",
 };
 
 const VALUES = [
@@ -65,7 +65,7 @@ export default function AboutPage() {
                     </p>
                     <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-6" />
                     <h1 className="font-serif text-4xl md:text-5xl text-white font-normal">
-                        Advocate Rajendra Panigrahi
+                        Mr. Rajendra Panigrahi
                     </h1>
                     <p className="text-white/50 text-lg mt-4 tracking-wide">
                         Supreme Court of India | 20+ Years | Bar Council of Delhi
@@ -81,7 +81,7 @@ export default function AboutPage() {
                         <div className="sticky top-24 bg-white rounded-2xl overflow-hidden border border-gray-100">
                             <Image
                                 src="/images/advocate-portrait.jpeg"
-                                alt="Advocate Rajendra Panigrahi — Senior Advocate, Supreme Court of India"
+                                alt="Mr. Rajendra Panigrahi — Senior Advocate, Supreme Court of India"
                                 width={400}
                                 height={500}
                                 className="w-full object-cover object-top"
@@ -89,7 +89,7 @@ export default function AboutPage() {
                             />
                             <div className="p-6">
                                 <p className="font-serif text-xl text-[#0f1f2e]">
-                                    Advocate Rajendra Panigrahi
+                                    Mr. Rajendra Panigrahi
                                 </p>
                                 <div className="w-8 h-px bg-[#B8963E] mt-2 mb-4" />
                                 {BADGES.map((badge) => (
@@ -122,7 +122,7 @@ export default function AboutPage() {
                             20 Years of Distinguished Legal Practice
                         </h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            Advocate Rajendra Panigrahi is a senior advocate enrolled with the Bar Council of Delhi and admitted to practice before the Supreme Court of India. With over two decades of active courtroom experience, he has built a practice known for strategic depth, direct client access, and results across complex legal matters.
+                            Mr. Rajendra Panigrahi is a senior advocate enrolled with the Bar Council of Delhi and admitted to practice before the Supreme Court of India. With over two decades of active courtroom experience, he has built a practice known for strategic depth, direct client access, and results across complex legal matters.
                         </p>
                         <p className="text-gray-600 leading-relaxed mb-4">
                             His practice spans criminal defence, high-stakes property litigation, family and matrimonial matters, and corporate advisory — serving clients across Delhi NCR including Noida, Delhi, Gurgaon, and Ghaziabad. He appears regularly before the Supreme Court of India, Delhi High Court, Allahabad High Court, and district courts across Uttar Pradesh and Haryana.
@@ -204,7 +204,7 @@ export default function AboutPage() {
                     </p>
                     <div className="w-16 h-px bg-[#B8963E] mx-auto mt-8 mb-4" />
                     <p className="text-white/40 text-sm tracking-wide">
-                        — Advocate Rajendra Panigrahi
+                        — Mr. Rajendra Panigrahi
                     </p>
                 </div>
             </section>
