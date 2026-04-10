@@ -272,7 +272,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                             +91 98100 53761
                         </a>
                         <button
-                            className="w-8 h-8 flex flex-col justify-center gap-1.5"
+                            className="min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-1.5"
                             onClick={() => setIsMenuOpen(true)}
                             aria-label="Open menu"
                         >
@@ -308,7 +308,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                 </div>
                 <button
                     onClick={() => setIsMenuOpen(false)}
-                    className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                    className="min-w-[44px] min-h-[44px] flex items-center justify-center text-white/60 hover:text-white transition-colors"
                     aria-label="Close menu"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -342,7 +342,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                 key={loc.slug}
                                                 href={`/lawyers/${loc.slug}`}
                                                 onClick={() => setIsMenuOpen(false)}
-                                                className="block text-white/60 text-sm py-2 pl-4 hover:text-[#B8963E] transition-colors"
+                                                className="block text-white/60 text-sm py-3 pl-4 hover:text-[#B8963E] transition-colors"
                                             >
                                                 {loc.city}
                                             </Link>
@@ -377,7 +377,7 @@ const Header = ({ logoText, navLinks, phone, whatsapp }: HeaderProps) => {
                                                         key={item.slug}
                                                         href={`/practice/${item.slug}`}
                                                         onClick={() => setIsMenuOpen(false)}
-                                                        className="block text-white/60 text-sm py-2 pl-4 hover:text-[#B8963E] transition-colors"
+                                                        className="block text-white/60 text-sm py-3 pl-4 hover:text-[#B8963E] transition-colors"
                                                     >
                                                         {item.title}
                                                     </Link>

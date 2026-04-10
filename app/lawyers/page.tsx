@@ -41,10 +41,10 @@ export default function LawyersIndexPage() {
                                 href={`/lawyers/${loc.slug}`}
                                 className="group bg-white border border-gray-100 rounded-xl p-8 hover:border-[#B8963E] transition-all"
                             >
-                                <p className="text-[#B8963E] text-[10px] tracking-[3px] uppercase mb-2">
+                                <p className="text-[#8B6914] text-[10px] tracking-[3px] uppercase mb-2">
                                     {loc.state}
                                 </p>
-                                <h2 className="font-serif text-2xl text-[#0f1f2e] font-normal mb-4 group-hover:text-[#B8963E] transition-colors">
+                                <h2 className="font-serif text-2xl text-[#0f1f2e] font-normal mb-4 group-hover:text-[#8B6914] transition-colors">
                                     {loc.city}
                                 </h2>
                                 <div className="w-6 h-px bg-[#B8963E]/30 mb-4" />
@@ -59,7 +59,7 @@ export default function LawyersIndexPage() {
                                         </li>
                                     ))}
                                 </ul>
-                                <span className="text-xs text-[#B8963E] tracking-[2px] uppercase group-hover:underline">
+                                <span className="text-xs text-[#8B6914] tracking-[2px] uppercase group-hover:underline">
                                     Learn More &rarr;
                                 </span>
                             </Link>

@@ -119,7 +119,7 @@ const HeroSection = ({
                     {/* Mobile phone link */}
                     <a
                         href="tel:+919810053761"
-                        className="block md:hidden text-center text-sm text-[#B8963E] font-medium mb-8 hover:underline"
+                        className="block md:hidden text-center text-sm text-[#8B6914] font-medium mb-8 hover:underline"
                     >
                         <span className="mr-1">📞</span> +91 98100 53761
                     </a>

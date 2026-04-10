@@ -22,7 +22,7 @@ export default function ConsultationModalWrapper({
     const styles = {
         gold: `bg-[#B8963E] text-white px-8 py-3.5 hover:bg-[#9a7d34] ${base}`,
         navy: `w-full bg-[#0f1f2e] text-white py-3 hover:bg-[#1a3147] rounded-lg ${base}`,
-        outline: `w-full block text-center border border-[#B8963E] text-[#B8963E] py-3 rounded-lg hover:bg-[#B8963E] hover:text-white ${base}`,
+        outline: `w-full block text-center border border-[#8B6914] text-[#8B6914] py-3 rounded-lg hover:bg-[#8B6914] hover:text-white ${base}`,
     };
 
     return (

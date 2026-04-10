@@ -95,7 +95,7 @@ export default function AboutPage() {
                                 {BADGES.map((badge) => (
                                     <span
                                         key={badge}
-                                        className="block bg-[#F7F4EF] text-[#B8963E] text-xs px-3 py-1.5 rounded-lg mb-2 font-medium"
+                                        className="block bg-[#F7F4EF] text-[#8B6914] text-xs px-3 py-1.5 rounded-lg mb-2 font-medium"
                                     >
                                         {badge}
                                     </span>
@@ -114,7 +114,7 @@ export default function AboutPage() {
                     {/* Right — about text + values */}
                     <div className="lg:col-span-2">
                         {/* Part A — About */}
-                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                        <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                             The Advocate
                         </p>
                         <div className="w-8 h-px bg-[#B8963E] mt-3 mb-6" />
@@ -133,7 +133,7 @@ export default function AboutPage() {
 
                         {/* Part B — Values */}
                         <div className="mt-16">
-                            <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                            <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                                 Our Values
                             </p>
                             <div className="w-8 h-px bg-[#B8963E] mt-3 mb-6" />
@@ -165,7 +165,7 @@ export default function AboutPage() {
             <section className="bg-white py-16 lg:py-20">
                 <div className="max-w-4xl mx-auto px-6">
                     <div className="text-center">
-                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                        <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                             How We Work
                         </p>
                         <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-5" />
@@ -177,7 +177,7 @@ export default function AboutPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
                         {STEPS.map((step) => (
                             <div key={step.num}>
-                                <span className="font-serif text-6xl text-[#B8963E]/20 font-normal leading-none block mb-4">
+                                <span className="font-serif text-6xl text-[#8B6914]/20 font-normal leading-none block mb-4">
                                     {step.num}
                                 </span>
                                 <h3 className="font-serif text-xl text-[#0f1f2e] font-normal mb-3">
@@ -213,7 +213,7 @@ export default function AboutPage() {
             <section className="bg-[#F7F4EF] py-20">
                 <Container>
                     <div className="max-w-3xl mx-auto text-center">
-                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                        <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                             Get In Touch
                         </p>
                         <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-6" />
@@ -232,7 +232,7 @@ export default function AboutPage() {
                                 href="https://wa.me/919810053761"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="border border-[#B8963E] text-[#B8963E] px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-[#B8963E] hover:text-white transition-colors"
+                                className="border border-[#8B6914] text-[#8B6914] px-8 py-3.5 text-xs tracking-[2px] uppercase rounded hover:bg-[#8B6914] hover:text-white transition-colors"
                             >
                                 WhatsApp Now
                             </a>

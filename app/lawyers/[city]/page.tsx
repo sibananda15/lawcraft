@@ -130,7 +130,7 @@ export default async function CityPage({
             <section className="bg-[#F7F4EF] py-16 lg:py-24">
                 <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16">
                     <div className="lg:col-span-2">
-                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                        <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                             Serving {location.city.toUpperCase()}
                         </p>
                         <div className="w-8 h-px bg-[#B8963E] mt-3 mb-6" />
@@ -146,7 +146,7 @@ export default async function CityPage({
 
                         <div className="bg-white rounded-xl p-6 border border-gray-100">
                             <div className="flex items-start gap-4">
-                                <span className="text-[#B8963E] text-2xl mt-0.5">&#9878;</span>
+                                <span className="text-[#8B6914] text-2xl mt-0.5">&#9878;</span>
                                 <div>
                                     <h3 className="font-serif text-lg text-[#0f1f2e] font-normal mb-2">
                                         Courts We Appear In
@@ -182,7 +182,7 @@ export default async function CityPage({
                                 ].map((badge) => (
                                     <span
                                         key={badge}
-                                        className="block bg-[#F7F4EF] text-[#B8963E] text-xs px-3 py-2 rounded-lg font-medium"
+                                        className="block bg-[#F7F4EF] text-[#8B6914] text-xs px-3 py-2 rounded-lg font-medium"
                                     >
                                         {badge}
                                     </span>
@@ -198,7 +198,7 @@ export default async function CityPage({
                                     href="https://wa.me/919810053761"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full text-center border border-[#B8963E] text-[#B8963E] py-3 rounded-lg text-xs tracking-[2px] uppercase mt-3 hover:bg-[#B8963E] hover:text-white transition-colors"
+                                    className="block w-full text-center border border-[#8B6914] text-[#8B6914] py-3 rounded-lg text-xs tracking-[2px] uppercase mt-3 hover:bg-[#8B6914] hover:text-white transition-colors"
                                 >
                                     WhatsApp Now
                                 </a>
@@ -212,7 +212,7 @@ export default async function CityPage({
             <section className="bg-white py-16 lg:py-20">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="text-center mb-14">
-                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                        <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                             Practice Areas
                         </p>
                         <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-5" />
@@ -232,13 +232,13 @@ export default async function CityPage({
                                 href={item.link}
                                 className="group border border-gray-100 rounded-xl p-6 hover:border-[#B8963E] transition block"
                             >
-                                <span className="text-[#B8963E] text-xl block mb-3">
+                                <span className="text-[#8B6914] text-xl block mb-3">
                                     &#9878;
                                 </span>
-                                <h3 className="font-serif text-lg text-[#0f1f2e] group-hover:text-[#B8963E] transition-colors font-normal">
+                                <h3 className="font-serif text-lg text-[#0f1f2e] group-hover:text-[#8B6914] transition-colors font-normal">
                                     {item.title}
                                 </h3>
-                                <p className="text-xs text-gray-400 mt-2 group-hover:text-[#B8963E] transition-colors">
+                                <p className="text-xs text-gray-400 mt-2 group-hover:text-[#8B6914] transition-colors">
                                     Learn more &rarr;
                                 </p>
                             </Link>

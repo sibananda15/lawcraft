@@ -104,7 +104,7 @@ const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) => {
                     {/* Close button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-[#0f1f2e] transition-colors z-10"
+                        className="absolute top-4 right-4 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-[#0f1f2e] transition-colors z-10"
                         aria-label="Close modal"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

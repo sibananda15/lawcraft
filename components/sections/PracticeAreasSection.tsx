@@ -86,10 +86,10 @@ const PracticeAreasSection = () => {
                                     onClick={() => setOpenPanel(isOpen ? "" : category.title)}
                                     className="w-full flex items-center justify-between py-4 border-b border-gray-200"
                                 >
-                                    <span className={`font-serif text-lg transition-colors ${isOpen ? "text-[#B8963E]" : "text-[#0f1f2e]"}`}>
+                                    <span className={`font-serif text-lg transition-colors ${isOpen ? "text-[#8B6914]" : "text-[#0f1f2e]"}`}>
                                         {category.title}
                                     </span>
-                                    <span className={`text-[#B8963E] text-xl leading-none transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+                                    <span className={`text-[#8B6914] text-xl leading-none transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
                                         +
                                     </span>
                                 </button>
@@ -99,7 +99,7 @@ const PracticeAreasSection = () => {
                                             <Link
                                                 key={item.slug}
                                                 href={`/practice/${item.slug}`}
-                                                className="block py-2.5 pl-4 text-sm text-gray-600 border-l-2 border-transparent hover:border-[#B8963E] hover:text-[#B8963E] transition-all"
+                                                className="block py-2.5 pl-4 text-sm text-gray-600 border-l-2 border-transparent hover:border-[#B8963E] hover:text-[#8B6914] transition-all"
                                             >
                                                 {item.title}
                                             </Link>

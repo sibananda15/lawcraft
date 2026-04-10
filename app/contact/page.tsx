@@ -76,7 +76,7 @@ export default function ContactPage() {
                     {/* LEFT COLUMN */}
                     <div className="lg:col-span-3">
                         {/* Part A — How We Work */}
-                        <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                        <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                             Our Process
                         </p>
                         <div className="w-8 h-px bg-[#B8963E] mt-3 mb-6" />
@@ -87,7 +87,7 @@ export default function ContactPage() {
                         <div className="space-y-0">
                             {STEPS.map((step, i) => (
                                 <div key={step.num} className="flex gap-6">
-                                    <span className="font-serif text-6xl text-[#B8963E]/15 font-normal leading-none w-16 shrink-0 select-none">
+                                    <span className="font-serif text-6xl text-[#8B6914]/15 font-normal leading-none w-16 shrink-0 select-none">
                                         {step.num}
                                     </span>
                                     <div
@@ -108,7 +108,7 @@ export default function ContactPage() {
 
                         {/* Part B — Office Location */}
                         <div className="mt-16">
-                            <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                            <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                                 Find Us
                             </p>
                             <div className="w-8 h-px bg-[#B8963E] mt-3 mb-6" />
@@ -134,7 +134,7 @@ export default function ContactPage() {
                                     href="https://www.google.com/maps/dir/?api=1&destination=28.5808296,77.3793651"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[#B8963E] text-xs tracking-[2px] uppercase hover:underline font-medium"
+                                    className="text-[#8B6914] text-xs tracking-[2px] uppercase hover:underline font-medium"
                                 >
                                     Get Directions →
                                 </a>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                                 {/* Office */}
                                 <div className="flex gap-4">
                                     <ContactIcon>
-                                        <svg className="w-3.5 h-3.5 text-[#B8963E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-3.5 h-3.5 text-[#8B6914]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                                 {/* Phone */}
                                 <div className="flex gap-4">
                                     <ContactIcon>
-                                        <svg className="w-3.5 h-3.5 text-[#B8963E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-3.5 h-3.5 text-[#8B6914]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                         </svg>
                                     </ContactIcon>
@@ -192,7 +192,7 @@ export default function ContactPage() {
                                         </p>
                                         <a
                                             href="tel:+919810053761"
-                                            className="font-serif text-lg text-[#0f1f2e] hover:text-[#B8963E] transition-colors mt-0.5 block"
+                                            className="font-serif text-lg text-[#0f1f2e] hover:text-[#8B6914] transition-colors mt-0.5 block"
                                         >
                                             +91 9810053761
                                         </a>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                                 {/* Email */}
                                 <div className="flex gap-4">
                                     <ContactIcon>
-                                        <svg className="w-3.5 h-3.5 text-[#B8963E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-3.5 h-3.5 text-[#8B6914]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
                                     </ContactIcon>
@@ -212,7 +212,7 @@ export default function ContactPage() {
                                         </p>
                                         <a
                                             href="mailto:contact@lawcraft.in"
-                                            className="text-sm text-[#0f1f2e] font-medium hover:text-[#B8963E] transition-colors mt-0.5 block"
+                                            className="text-sm text-[#0f1f2e] font-medium hover:text-[#8B6914] transition-colors mt-0.5 block"
                                         >
                                             contact@lawcraft.in
                                         </a>
@@ -222,7 +222,7 @@ export default function ContactPage() {
                                 {/* Hours */}
                                 <div className="flex gap-4">
                                     <ContactIcon>
-                                        <svg className="w-3.5 h-3.5 text-[#B8963E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-3.5 h-3.5 text-[#8B6914]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </ContactIcon>
@@ -252,7 +252,7 @@ export default function ContactPage() {
                                     href="https://wa.me/919810053761"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full block text-center border border-[#B8963E] text-[#B8963E] py-3.5 rounded-lg text-xs tracking-[2px] uppercase hover:bg-[#B8963E] hover:text-white transition-colors"
+                                    className="w-full block text-center border border-[#8B6914] text-[#8B6914] py-3.5 rounded-lg text-xs tracking-[2px] uppercase hover:bg-[#8B6914] hover:text-white transition-colors"
                                 >
                                     WhatsApp Now
                                 </a>
@@ -265,7 +265,7 @@ export default function ContactPage() {
             {/* ── SECTION 3 — GEOGRAPHIC REACH ── */}
             <section className="bg-white py-16">
                 <div className="max-w-4xl mx-auto px-6 text-center">
-                    <p className="text-[#B8963E] text-xs tracking-[4px] uppercase">
+                    <p className="text-[#8B6914] text-xs tracking-[4px] uppercase">
                         Where We Practice
                     </p>
                     <div className="w-8 h-px bg-[#B8963E] mx-auto mt-3 mb-5" />
@@ -279,7 +279,7 @@ export default function ContactPage() {
                         {CITIES.map((city) => (
                             <span
                                 key={city}
-                                className="border border-gray-200 rounded-full px-5 py-2 text-sm text-gray-500 hover:border-[#B8963E] hover:text-[#B8963E] transition cursor-default"
+                                className="border border-gray-200 rounded-full px-5 py-2 text-sm text-gray-500 hover:border-[#B8963E] hover:text-[#8B6914] transition cursor-default"
                             >
                                 {city}
                             </span>
