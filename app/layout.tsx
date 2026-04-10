@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Senior Advocate Rajendra Panigrahi offers expert criminal defence, civil litigation, family law & property dispute services in Noida, Delhi NCR. 20+ years of courtroom experience. Call for a consultation.",
   alternates: { canonical: siteUrl },
   verification: {
-    google: "f256021358852943",
+    google: "FBDdDmwnbNqu1_XvlSROL8OTpvzZ3RddVPX5zURDkjM",
   },
   openGraph: {
     title: "Lawcraft Advocates | Criminal & Civil Lawyer Noida | Rajendra Panigrahi",
