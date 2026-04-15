@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/civil-law.php",
+        destination: "/practice/civil-litigation-appeals",
+        permanent: true,
+      },
+      {
         source: "/dispute-resolution-litigation.php",
         destination: "/practice/civil-litigation-appeals",
         permanent: true,
