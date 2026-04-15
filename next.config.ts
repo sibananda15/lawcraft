@@ -29,6 +29,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/dispute-resolution-litigation.php",
+        destination: "/practice/civil-litigation-appeals",
+        permanent: true,
+      },
+      {
+        source: "/court-marriage.php",
+        destination: "/practice/family-matrimonial-law",
+        permanent: true,
+      },
+      {
+        source: "/documentation.php",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/private-equity-investment-funds.php",
+        destination: "/practice/startup-investment-advisory",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "www.lawcraftadvocates.com" }],
         destination: "https://lawcraftadvocates.com/:path*",
